@@ -17,7 +17,7 @@ This project a template for full-stack applications powered with MERN stack.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/alpturan-dev/cvqs-app
+   git clone https://github.com/alpturan-dev/mern-stack-starter
    ```
 2. Add .env file to ./server/.env and set the required variables mentioned in .env.example file.
 3. Navigate to /client folder and install NPM packages
