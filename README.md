@@ -1,8 +1,4 @@
-# mern-stack-starter | template for mern stack projects
-
-## About The Project
-
-This project a template for full-stack applications powered with MERN stack.
+# Hendese Otomotiv Website
 
 ## Getting Started
 
@@ -36,3 +32,4 @@ This project a template for full-stack applications powered with MERN stack.
    ```sh
    npm start
    ```
+# hendese-otomotiv
