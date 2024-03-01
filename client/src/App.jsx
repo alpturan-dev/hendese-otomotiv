@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function App() {
-  const [books, setBooks] = useState([])
+  const [products, setProducts] = useState([])
 
-  const getBooks = async () => {
+  const getProducts = async () => {
     axios
-      .get('http://localhost:5001/books')
+      .get('http://localhost:5001/products')
       .then((response) => {
         console.log("response", response.data)
-        setBooks(response.data.data);
+        setProducts(response.data.data);
       })
       .catch((error) => {
         console.log(error);
@@ -17,15 +17,15 @@ function App() {
   }
 
   useEffect(() => {
-    getBooks();
+    getProducts();
   }, [])
 
   return (
     <div>
-      Books
-      {books.map((book) => (
-        <div key={book._id}>
-          {book.title} | {book.author} | {book.publishYear}
+      Products
+      {products.map((product) => (
+        <div key={product._id}>
+          {product.name} | {product.description} | {product.stock}
         </div>
       ))}
     </div>
