@@ -6,7 +6,7 @@ function App() {
 
   const getProducts = async () => {
     axios
-      .get('http://localhost:5001/products')
+      .get(import.meta.env.VITE_API_URL + '/products')
       .then((response) => {
         console.log("response", response.data)
         setProducts(response.data.data);
