@@ -1,7 +1,7 @@
 import express from 'express';
 import 'dotenv/config'
 import mongoose from 'mongoose';
-import booksRoute from './routes/booksRoute.js';
+import productsRoute from './routes/productsRoute.js';
 import cors from 'cors';
 
 const app = express();
@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.use(cors());
 
-app.use('/books', booksRoute);
+app.use('/products', productsRoute);
 
 app.get('/', (request, response) => {
     console.log(request);
