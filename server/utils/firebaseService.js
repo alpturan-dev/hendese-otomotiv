@@ -1,7 +1,7 @@
 // server/firebaseService.js
 import { v4 as uuidv4 } from 'uuid';
-import { storage } from '../config/firebaseConfig';
 import { ref, uploadBytes } from "firebase/storage";
+import { storage } from '../config/firebaseConfig.js';
 
 // Function to upload image to Firestore Storage
 export const uploadImage = async (file) => {
