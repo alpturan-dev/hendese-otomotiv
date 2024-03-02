@@ -1,24 +1,24 @@
 // server/routes/uploads.js
 
 import express from "express";
-import { uploadImage } from "../utils/firebaseService.js";
+import { uploadImages } from "../utils/firebaseService.js";
 
 const router = express.Router();
 
-// Route for handling image uploads
-router.post("/uploadProductImage", async (req, res) => {
+// Route for handling multiple image uploads
+router.post("/uploadProductImages", async (req, res) => {
     try {
-        // Assuming 'file' is sent in the request body
-        const { file } = req.body;
+        // Assuming 'files' is an array of files sent in the request body
+        const { files } = req.body;
 
-        // Call the uploadImage function to upload the file
-        const downloadURL = await uploadImage(file);
+        // Call the uploadImages function to upload the files
+        const downloadURLs = await uploadImages(files);
 
-        // Send the download URL back to the client
-        res.json({ downloadURL });
+        // Send the array of download URLs back to the client
+        res.json({ downloadURLs });
     } catch (error) {
-        console.error("Error uploading image:", error);
-        res.status(500).json({ error: "Failed to upload image" });
+        console.error("Error uploading images:", error);
+        res.status(500).json({ error: "Failed to upload images" });
     }
 });
 

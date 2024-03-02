@@ -3,19 +3,27 @@ import { v4 as uuidv4 } from 'uuid';
 import { ref, uploadBytes } from "firebase/storage";
 import { storage } from '../config/firebaseConfig.js';
 
-// Function to upload image to Firestore Storage
-export const uploadImage = async (file) => {
+// Function to upload multiple images to Firestore Storage
+export const uploadImages = async (files) => {
     try {
-        // Create a reference to the storage bucket location
-        const storageRef = ref(storage, `images/${uuidv4()}`);
+        const uploadTasks = [];
 
-        // Upload the file to the storage bucket
-        const snapshot = await uploadBytes(storageRef, file);
+        // Iterate over each file and upload them individually
+        files.forEach((file) => {
+            const fileName = file.name; // Use the original file name as the Firestore Storage file name
+            const storageRef = ref(storage, fileName);
+            const uploadTask = uploadBytes(storageRef, file);
+            uploadTasks.push(uploadTask);
+        });
 
-        // Return the download URL of the uploaded file
-        return snapshot.ref.getDownloadURL();
+        // Wait for all upload tasks to complete
+        await Promise.all(uploadTasks);
+
+        // Return an array of download URLs for the uploaded images
+        const downloadURLs = await Promise.all(uploadTasks.map((uploadTask) => uploadTask.snapshot.ref.getDownloadURL()));
+        return downloadURLs;
     } catch (error) {
-        console.error("Error uploading image:", error);
-        throw error; // Rethrow the error to be handled by the caller
+        console.error("Error uploading images:", error);
+        throw error;
     }
 };
