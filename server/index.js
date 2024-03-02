@@ -11,8 +11,8 @@ app.use(express.json());
 
 app.use(cors());
 
-app.use('/products', productsRoute);
-app.use('/uploads', uploadsRoute);
+app.use('/api/products', productsRoute);
+app.use('/api/uploads', uploadsRoute);
 
 app.get('/', (request, response) => {
     console.log(request);
