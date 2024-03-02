@@ -1,7 +1,7 @@
 // server/routes/uploads.js
 
 import express from "express";
-import { uploadImage } from "../firebaseService";
+import { uploadImage } from "../utils/firebaseService";
 
 const router = express.Router();
 
