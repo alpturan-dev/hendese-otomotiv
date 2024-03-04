@@ -15,7 +15,8 @@ router.post('/', async (request, response) => {
             !request.body.model ||
             !request.body.part ||
             !request.body.isActive ||
-            !request.body.categories
+            !request.body.categories ||
+            !request.body.images
         ) {
             return response.status(400).send({
                 message: 'Send all required fields!',
