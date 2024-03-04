@@ -8,7 +8,6 @@ function App() {
     axios
       .get(import.meta.env.VITE_API_URL + '/api/products')
       .then((response) => {
-        console.log("response", response.data)
         setProducts(response.data.data);
       })
       .catch((error) => {
