@@ -4,16 +4,17 @@ import {
 } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import Admin from "./pages/Admin";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Dashboard />
   },
-  // {
-  //   path: "/admin",
-  //   element: <AdminPanel />
-  // },
+  {
+    path: "/admin",
+    element: <Admin />
+  },
   {
     path: "/login",
     element: <Login />
