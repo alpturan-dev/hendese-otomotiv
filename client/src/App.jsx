@@ -1,33 +1,39 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Dashboard />
+  },
+  // {
+  //   path: "/admin",
+  //   element: <AdminPanel />
+  // },
+  {
+    path: "/login",
+    element: <Login />
+  },
+  // {
+  //   path: "/product/:productId",
+  //   element: <ProductPage />
+  // },
+  // {
+  //   path: "/iletisim",
+  //   element: <Contact />
+  // },
+  // {
+  //   path: `/kategori/:categoryName`,
+  //   element: <CategoryPage />
+  // }
+]);
 function App() {
-  const [products, setProducts] = useState([])
-
-  const getProducts = async () => {
-    axios
-      .get(import.meta.env.VITE_API_URL + '/api/products')
-      .then((response) => {
-        setProducts(response.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  useEffect(() => {
-    getProducts();
-  }, [])
-
   return (
-    <div>
-      Products
-      {products.map((product) => (
-        <div key={product._id}>
-          {product.name} | {product.description} | {product.stock}
-        </div>
-      ))}
-    </div>
+    <RouterProvider router={router} />
   )
 }
 
