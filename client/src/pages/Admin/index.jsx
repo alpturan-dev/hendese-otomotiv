@@ -1,8 +1,14 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Button } from '@/components/ui/button'
 
 const Admin = () => {
     const navigate = useNavigate()
+
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate('/login')
+    }
 
     useEffect(() => {
         const username = JSON.parse(localStorage.getItem('user'))?.username;
@@ -14,7 +20,9 @@ const Admin = () => {
     })
 
     return (
-        <div>Admin</div>
+        <div>Admin
+            <Button onClick={handleLogout}>Çıkış yap</Button>
+        </div>
     )
 }
 
