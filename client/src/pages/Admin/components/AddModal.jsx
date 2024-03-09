@@ -13,9 +13,8 @@ import { useState } from "react"
 import { v4 } from "uuid";
 import { useToast } from "@/components/ui/use-toast"
 import Loading from "@/components/loading"
-import { PlusCircledIcon } from "@radix-ui/react-icons"
 
-export default function ProductModal({ products, setProducts }) {
+export default function AddModal({ products, setProducts }) {
     const { toast } = useToast()
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -113,7 +112,6 @@ export default function ProductModal({ products, setProducts }) {
                 <DialogTrigger asChild>
                     <Button className="w-full md:w-auto" variant="outline"
                         onClick={() => setOpen(true)}>
-                        <PlusCircledIcon className="mr-2" />
                         Parça ekle
                     </Button>
                 </DialogTrigger>

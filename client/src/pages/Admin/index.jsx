@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table"
 import axios from 'axios'
-import ProductModal from './components/product-modal'
+import AddModal from './components/AddModal'
 import { useToast } from "@/components/ui/use-toast"
 import { storage } from '@/config/firebaseConfig'
 import { ref, deleteObject } from 'firebase/storage';
-import { DeleteDialog } from '@/components/delete-dialog'
+import { DeleteDialog } from '@/components/DeleteDialog'
 import Loading from '@/components/loading'
 
 const Admin = () => {
@@ -97,7 +97,7 @@ const Admin = () => {
                 </form> */}
                     <div></div>
                     <div className='mr-4 mt-4'>
-                        <ProductModal products={products} setProducts={setProducts} />
+                        <AddModal products={products} setProducts={setProducts} />
                     </div>
                 </div>
                 <main className="flex-1 overflow-y-auto p-4">
