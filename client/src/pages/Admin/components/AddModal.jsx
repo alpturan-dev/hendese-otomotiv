@@ -8,13 +8,13 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { parts, models, categories } from "@/constants/constants"
 import axios from 'axios'
 import { storage } from '@/config/firebaseConfig'
-import { ref, uploadBytes, getDownloadURL, } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import { useState } from "react"
 import { v4 } from "uuid";
 import { useToast } from "@/components/ui/use-toast"
-import Loading from "@/components/loading"
+import Loading from "@/components/Loading"
 
-export default function AddModal({ setProducts }) {
+export default function AddModal({ products, setProducts }) {
     const { toast } = useToast()
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -50,7 +50,6 @@ export default function AddModal({ setProducts }) {
                     return url;
                 })
             );
-
             const updatedImageUrls = [...imageUrls, ...uploadedUrls];
             setImageUrls(updatedImageUrls);
             setImageFiles([]);
@@ -61,7 +60,6 @@ export default function AddModal({ setProducts }) {
         }
     };
 
-
     const addProduct = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -71,8 +69,7 @@ export default function AddModal({ setProducts }) {
         axios.post(import.meta.env.VITE_API_URL + '/api/products',
             tempProduct)
             .then((response) => {
-                console.log("response", response.data);
-                setProducts([...products, tempProduct])
+                setProducts([...products, response.data])
                 setNewProduct({
                     name: "",
                     description: "",
@@ -92,6 +89,10 @@ export default function AddModal({ setProducts }) {
             })
             .catch((error) => {
                 console.log(error);
+                imgUrls.map(async (image) => {
+                    const deleteRef = ref(storage, image);
+                    await deleteObject(deleteRef);
+                })
                 toast({
                     title: "Parça eklenemedi!",
                     description: error.response.data.message,
