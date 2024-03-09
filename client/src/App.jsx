@@ -2,6 +2,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import { Toaster } from "@/components/ui/toaster"
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Admin from "./pages/Admin";
@@ -34,7 +35,10 @@ const router = createBrowserRouter([
 ]);
 function App() {
   return (
-    <RouterProvider router={router} />
+    <>
+      <Toaster />
+      <RouterProvider router={router} />
+    </>
   )
 }
 
