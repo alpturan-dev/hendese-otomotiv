@@ -3,9 +3,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster"
-import Dashboard from "./pages/Dashboard";
-import Login from "./pages/Login";
-import Admin from "./pages/Admin";
+import Dashboard from "./pages/dashboard";
+import Login from "./pages/login";
+import Admin from "./pages/admin";
 
 const router = createBrowserRouter([
   {
