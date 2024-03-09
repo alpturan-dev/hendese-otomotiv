@@ -8,7 +8,7 @@ import { useToast } from "@/components/ui/use-toast"
 import { storage } from '@/config/firebaseConfig'
 import { ref, deleteObject } from 'firebase/storage';
 import { DeleteDialog } from '@/components/DeleteDialog'
-import Loading from "@/components/Loading"
+import { Loading } from '@/components/loading'
 
 const Admin = () => {
     const { toast } = useToast()

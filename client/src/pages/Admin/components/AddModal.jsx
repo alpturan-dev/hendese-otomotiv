@@ -12,7 +12,7 @@ import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage
 import { useState } from "react"
 import { v4 } from "uuid";
 import { useToast } from "@/components/ui/use-toast"
-import Loading from "@/components/Loading"
+import Loading from "@/components/loading"
 
 export default function AddModal({ products, setProducts }) {
     const { toast } = useToast()
