@@ -5,7 +5,7 @@ import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@
 import axios from 'axios'
 import AddModal from './components/AddModal'
 import { useToast } from "@/components/ui/use-toast"
-import Loading from '@/components/Loading'
+import Loading from '@/components/loading'
 import { storage } from '@/config/firebaseConfig'
 import { ref, deleteObject } from 'firebase/storage';
 import { DeleteDialog } from '@/components/DeleteDialog'

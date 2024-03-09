@@ -1,3 +1,5 @@
+import React from 'react'
+
 const Loading = ({ children, loading }) => {
     return (
         <>{!loading ? <>{children}</> :
