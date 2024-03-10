@@ -115,6 +115,7 @@ const Admin = () => {
                                         <TableHead className="hidden md:table-cell">Model</TableHead>
                                         <TableHead className="hidden md:table-cell">Parça</TableHead>
                                         <TableHead className="hidden lg:table-cell">Kategoriler</TableHead>
+                                        <TableHead className="hidden lg:table-cell">Satışta</TableHead>
                                         <TableHead className="w-[100px] text-center"></TableHead>
                                     </TableRow>
                                 </TableHeader>
@@ -144,6 +145,7 @@ const Admin = () => {
                                                     <div key={index}>{category}{product.categories.length > index + 1 && ','}</div>
                                                 )}
                                             </TableCell>
+                                            <TableCell className="hidden md:table-cell">{product.isActive}</TableCell>
                                             <TableCell className="">
                                                 <Button size="icon" variant="ghost">
                                                     <FileEditIcon className="w-4 h-4" />

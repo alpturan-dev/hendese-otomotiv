@@ -2,6 +2,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react"
 import { Toaster } from "@/components/ui/toaster"
 import Dashboard from "./pages/dashboard";
 import Login from "./pages/login";
@@ -37,6 +38,7 @@ function App() {
   return (
     <>
       <Toaster />
+      <Analytics />
       <RouterProvider router={router} />
     </>
   )
