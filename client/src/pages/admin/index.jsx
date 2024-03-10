@@ -97,7 +97,7 @@ const Admin = () => {
                 </form> */}
                     <div></div>
                     <div className='mr-4 mt-4'>
-                        <ProductModal products={products} setProducts={setProducts} />
+                        <ProductModal element={<>Parça ekle</>} products={products} setProducts={setProducts} />
                     </div>
                 </div>
                 <main className="flex-1 overflow-y-auto p-4">
@@ -120,8 +120,8 @@ const Admin = () => {
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
-                                    {products.map((product, index) => (
-                                        <TableRow key={product._id || index}>
+                                    {products.map((product) => (
+                                        <TableRow key={product?._id}>
                                             <TableCell>
                                                 <img
                                                     alt={product.name}
@@ -145,12 +145,21 @@ const Admin = () => {
                                                     <div key={index}>{category}{product.categories.length > index + 1 && ','}</div>
                                                 )}
                                             </TableCell>
-                                            <TableCell className="hidden md:table-cell">{product.isActive}</TableCell>
+                                            <TableCell className="hidden md:table-cell">
+                                                {product.isActive ? "Evet" : "Hayır"}
+                                            </TableCell>
                                             <TableCell className="">
-                                                <Button size="icon" variant="ghost">
-                                                    <FileEditIcon className="w-4 h-4" />
-                                                    <span className="sr-only">Düzenle</span>
-                                                </Button>
+                                                <ProductModal
+                                                    element={
+                                                        <>
+                                                            <FileEditIcon className="w-4 h-4" />
+                                                            <span className="sr-only">Düzenle</span>
+                                                        </>
+                                                    }
+                                                    type='edit'
+                                                    getProducts={getProducts}
+                                                    product={product}
+                                                    products={products} setProducts={setProducts} />
                                                 <DeleteDialog product={product} deleteProduct={() => deleteProduct(product)} />
                                             </TableCell>
                                         </TableRow>

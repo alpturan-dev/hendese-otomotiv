@@ -64,33 +64,40 @@ router.get('/', async (request, response) => {
 //     }
 // });
 
-// // Route for Update a Book
-// router.put('/:id', async (request, response) => {
-//     try {
-//         if (
-//             !request.body.title ||
-//             !request.body.author ||
-//             !request.body.publishYear
-//         ) {
-//             return response.status(400).send({
-//                 message: 'Send all required fields: title, author, publishYear',
-//             });
-//         }
+// Route for Update a Book
+router.put('/:id', async (request, response) => {
+    try {
+        if (
+            !request.body.name ||
+            !request.body.description ||
+            !request.body.stock ||
+            !request.body.oem ||
+            !request.body.price ||
+            !request.body.model ||
+            !request.body.part ||
+            !request.body.isActive ||
+            !request.body.categories ||
+            !request.body.images
+        ) {
+            return response.status(400).send({
+                message: 'Send all required fields!',
+            });
+        }
 
-//         const { id } = request.params;
+        const { id } = request.params;
 
-//         const result = await Book.findByIdAndUpdate(id, request.body);
+        const result = await Product.findByIdAndUpdate(id, request.body);
 
-//         if (!result) {
-//             return response.status(404).json({ message: 'Book not found' });
-//         }
+        if (!result) {
+            return response.status(404).json({ message: 'Product not found' });
+        }
 
-//         return response.status(200).send({ message: 'Book updated successfully' });
-//     } catch (error) {
-//         console.log(error.message);
-//         response.status(500).send({ message: error.message });
-//     }
-// });
+        return response.status(200).send(result);
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
+});
 
 router.delete('/:id', async (request, response) => {
     try {

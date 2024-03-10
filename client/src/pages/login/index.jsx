@@ -6,8 +6,11 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { CardTitle, CardDescription, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
+import Loading from '@/components/loading'
+import { useToast } from '@/components/ui/use-toast'
 
 const Login = () => {
+    const { toast } = useToast()
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
     const [credentials, setCredentials] = useState({
@@ -22,11 +25,21 @@ const Login = () => {
             .post(`${import.meta.env.VITE_API_URL + '/api/login'}`,
                 { username: credentials.username, password: credentials.password })
             .then((res) => {
+                toast({
+                    title: "Başarıyla giriş yapıldı!",
+                    className: "bg-green-500 text-white",
+                    duration: 3000
+                })
                 localStorage.setItem('user', JSON.stringify((res.data)));
                 navigate('/admin')
             })
-            .catch((e) => {
-                console.error(e);
+            .catch((error) => {
+                toast({
+                    title: "Giriş yapılamadı, hatalı giriş bilgileri!",
+                    description: error.response.data.message,
+                    variant: "destructive",
+                    duration: 3000
+                })
                 localStorage.clear();
             }).finally(() => {
                 setLoading(false)
@@ -43,7 +56,7 @@ const Login = () => {
 
     return (
         <>
-            {loading ? <>loading</> : (
+            {loading ? <Loading /> : (
                 <form onSubmit={handleLogin} autoComplete="off" className='h-screen m-auto w-1/3 flex items-start justify-center gap-4 flex-col'>
                     <Card>
                         <CardHeader>
