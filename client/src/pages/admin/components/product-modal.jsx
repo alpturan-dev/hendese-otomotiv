@@ -14,7 +14,7 @@ import { v4 } from "uuid";
 import { useToast } from "@/components/ui/use-toast"
 import Loading from "@/components/loading"
 
-export default function AddModal({ products, setProducts }) {
+export default function ProductModal({ products, setProducts }) {
     const { toast } = useToast()
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
