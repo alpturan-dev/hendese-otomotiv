@@ -1,8 +1,13 @@
 import React from 'react'
+import Navbar from '@/components/navbar'
+import CustomCarousel from '@/components/custom-carousel'
 
 const Dashboard = () => {
     return (
-        <div>Dashboard</div>
+        <div>
+            <Navbar />
+            <CustomCarousel />
+        </div>
     )
 }
 
