@@ -5,14 +5,12 @@ import {
     Carousel,
     CarouselContent,
     CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
 } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
 
 const CustomCarousel = () => {
     return (
-        <Carousel className="mx-auto w-9/12 sm:w-10/12 md:w-11/12" opts={{
+        <Carousel className="mx-auto w-full" opts={{
             loop: true
         }}
             plugins={[
@@ -33,8 +31,6 @@ const CustomCarousel = () => {
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
         </Carousel>
     )
 }
