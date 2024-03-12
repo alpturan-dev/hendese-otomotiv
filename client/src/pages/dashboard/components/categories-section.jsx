@@ -12,7 +12,7 @@ const CategoriesSection = () => {
                         Farklı kategorilerimize göz atarak ihtiyacınız olan parçaları bulun.
                     </p>
                 </div>
-                <div className="grid w-full grid-cols-2 items-stretch justify-center mx-auto sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+                <div className="grid w-full grid-cols-2 items-stretch justify-center mx-auto sm:grid-cols-3 lg:grid-cols-4">
                     {parts.map((part, index) => (
                         <div
                             key={index}
