@@ -1,13 +1,12 @@
 import React from 'react'
 import logo from '../assets/logo.jpeg'
 import { Input } from './ui/input'
-import { Button } from './ui/button'
-import { Mail, MapPin, Phone, Search } from 'lucide-react'
+import { Mail, MapPin } from 'lucide-react'
 
 const Navbar = () => {
     return (
         <div>
-            <div className='bg-[#E3020F] w-full text-white text-xs justify-center flex flex-col md:flex-row md:gap-8'>
+            <div className='bg-[#E3020F] w-full text-white text-[11px] justify-center flex flex-col md:flex-row md:gap-8'>
                 <div className='flex items-center justify-center py-1'>
                     <MapPin className='w-4 h-5' />
                     <span className='mx-2'>
@@ -31,10 +30,21 @@ const Navbar = () => {
                         <div className='text-base md:text-xl lg:text-2xl font-bold text-center underline underline-offset-4 decoration-[#E3020F]'><span className='text-[#E3020F]'>Suzuki</span> Çıkma Yedek Parça</div>
                     </div>
                     <div className='relative h-10 w-4/5 mx-auto flex items-center gap-2 mb-6 md:mb-0'>
-                        <Input type="search" id="search" placeholder="Parça Ara..." className=" focus:outline-[#E3020F]" />
-                        <Button className="bg-[#E3020F] hover:bg-[#E3020F] hover:opacity-90 gap-2" type="submit">
-                            <Search className='w-3 h-3' />
-                            Ara</Button>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="absolute top-0 bottom-0 w-6 h-6 my-auto left-3"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                            />
+                        </svg>
+                        <Input type="text" placeholder="Parça Ara..." className="pl-12 pr-4" />
                     </div>
                 </div>
                 <div className='w-1/4 md:flex-row items-center justify-end pt-12 hidden md:flex'>
