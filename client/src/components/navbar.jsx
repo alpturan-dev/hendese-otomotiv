@@ -20,7 +20,7 @@ const Navbar = () => {
                     </span>
                 </div>
             </div>
-            <div className='w-full md:h-40 bg-[#F7F7F7] flex flex-col md:flex-row items-center md:px-8 lg:px-16' >
+            <div className='mx-auto w-full lg:w-3/4 max-w-[1000px] md:h-40 bg-[#F7F7F7] flex flex-col md:flex-row items-center md:px-8 lg:px-0' >
                 <div className='w-full md:w-1/4 h-[120px] pt-6'>
                     <img src={logo} className='w-[8rem] md:w-[10rem] h-[5rem] md:h-[6rem] mx-auto md:mx-0' />
                 </div>

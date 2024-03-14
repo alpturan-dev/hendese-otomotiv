@@ -1,6 +1,7 @@
 import { parts } from '@/constants/constants'
 import React from 'react'
 import logo from '../../../assets/logo.jpeg'
+import motor from '../../../assets/motor.jpeg'
 
 const CategoriesSection = () => {
     return (
@@ -22,12 +23,12 @@ const CategoriesSection = () => {
                             <img
                                 alt={part}
                                 className='h-[110px] sm:h-[140px] w-full'
-                                src={logo}
+                                src={motor}
                                 style={{
                                     objectFit: "cover",
                                 }}
                             />
-                            <span className='w-full h-[34px] sm:h-[52px] pt-2 sm:pt-4 bg-black opacity-60 text-white rounded-b-sm'>{part}</span>
+                            <span className='w-full h-[34px] sm:h-[52px] pt-2 sm:pt-4 bg-black opacity-80 text-white rounded-b-sm'>{part}</span>
                         </div>
                     ))}
                 </div>
