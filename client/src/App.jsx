@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster"
 import Dashboard from "./pages/dashboard";
 import Login from "./pages/login";
 import Admin from "./pages/admin";
+import Part from "./pages/part";
 
 const router = createBrowserRouter([
   {
@@ -21,10 +22,10 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />
   },
-  // {
-  //   path: "/product/:productId",
-  //   element: <ProductPage />
-  // },
+  {
+    path: "/parca/:parca",
+    element: <Part />
+  },
   // {
   //   path: "/iletisim",
   //   element: <Contact />

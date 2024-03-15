@@ -2,8 +2,10 @@ import React from 'react'
 import logo from '../assets/logo.jpeg'
 import { Input } from './ui/input'
 import { Mail, MapPin } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+    const navigate = useNavigate();
     return (
         <div>
             <div className='bg-[#E3020F] w-full text-white text-[11px] justify-center flex flex-col md:flex-row md:gap-8'>
@@ -21,12 +23,12 @@ const Navbar = () => {
                 </div>
             </div>
             <div className='mx-auto w-full lg:w-3/4 max-w-[1000px] md:h-40 bg-[#F7F7F7] flex flex-col md:flex-row items-center md:px-8 lg:px-0' >
-                <div className='w-full md:w-1/4 h-[120px] pt-6'>
+                <div className='w-full md:w-1/4 h-[120px] pt-6 cursor-pointer' onClick={() => navigate('/')}>
                     <img src={logo} className='w-[8rem] md:w-[10rem] h-[5rem] md:h-[6rem] mx-auto md:mx-0' />
                 </div>
                 <div className="w-full md:w-2/4 flex flex-col gap-4">
                     <div>
-                        <div className='text-xl md:text-2xl lg:text-3xl font-bold text-center mb-1'>Hendese Otomotiv</div>
+                        <div className='text-xl md:text-2xl lg:text-3xl font-bold text-center mb-1 cursor-pointer' onClick={() => navigate('/')}>Hendese Otomotiv</div>
                         <div className='text-base md:text-xl lg:text-2xl font-bold text-center underline underline-offset-4 decoration-[#E3020F]'><span className='text-[#E3020F]'>Suzuki</span> Çıkma Yedek Parça</div>
                     </div>
                     <div className='relative h-10 w-4/5 mx-auto flex items-center gap-2 mb-6 md:mb-0'>
