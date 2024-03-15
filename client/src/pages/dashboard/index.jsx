@@ -6,7 +6,7 @@ import CategoryCarousel from './components/category-carousel'
 
 const Dashboard = () => {
     return (
-        <div>
+        <div className='bg-[#F7F7F7]'>
             <Navbar />
             <CustomCarousel />
             <CategoriesSection />
