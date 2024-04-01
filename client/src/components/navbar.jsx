@@ -29,7 +29,7 @@ const Navbar = () => {
                 <div className="w-full md:w-2/4 flex flex-col gap-4">
                     <div>
                         <div className='text-xl md:text-2xl lg:text-3xl font-bold text-center mb-1 cursor-pointer' onClick={() => navigate('/')}>Hendese Otomotiv</div>
-                        <div className='text-base md:text-xl lg:text-2xl font-bold text-center underline underline-offset-4 decoration-[#E3020F]'><span className='text-[#E3020F]'>Suzuki</span> Çıkma Yedek Parça</div>
+                        <div className='text-base md:text-xl font-semibold text-center underline underline-offset-4 decoration-[#E3020F]'><span className='text-[#E3020F]'>Suzuki</span> Çıkma Yedek Parça</div>
                     </div>
                     <div className='relative h-10 w-4/5 mx-auto flex items-center gap-2 mb-6 md:mb-0'>
                         <svg

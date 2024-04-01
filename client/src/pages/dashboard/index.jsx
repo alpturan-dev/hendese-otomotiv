@@ -9,7 +9,7 @@ const Dashboard = () => {
         <div className='bg-[#F7F7F7]'>
             <Navbar />
             <CustomCarousel />
-            <CategoriesSection />
+            {/* <CategoriesSection /> */}
             <CategoryCarousel />
         </div>
     )
