@@ -8,9 +8,9 @@ const AllProducts = () => {
 
     return (
         <div className='bg-[#fff] w-full'>
-            <div div className="container py-6 px-auto w-full lg:w-3/4 max-w-[1000px]" >
+            <div className="container py-6 px-auto w-full lg:w-3/4 max-w-[1000px]" >
                 <h2 className="text-xl font-bold tracking-tighter sm:text-2xl md:text-3xl text-[#E3020F]">Tüm Parçalar</h2>
-                <hr class="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700" />
+                <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700" />
                 <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4'>
                     {products.length > 0 && products?.map((product) => (
                         <div key={product._id} className="grid cursor-pointer hover:opacity-90 rounded-sm">

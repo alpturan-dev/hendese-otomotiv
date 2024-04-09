@@ -23,7 +23,6 @@ const CategoryCarousel = ({ type }) => {
             );
             setCategoryProducts(filteredProducts);
         }
-        console.log("filteredProducts", filteredProducts);
     }
 
     useEffect(() => {
@@ -32,7 +31,7 @@ const CategoryCarousel = ({ type }) => {
 
     return (
         categoryProducts.length <= 0 ? null : (
-            <div div className="bg-[#fff] w-full container text-center py-6" >
+            <div className="bg-[#fff] w-full container text-center py-6" >
                 <h3 className='text-2xl font-bold tracking-tighter sm:text-2xl pt-2 pb-6 text-[#E3020F]'>
                     {type}
                 </h3>
