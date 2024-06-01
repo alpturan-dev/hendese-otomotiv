@@ -6,6 +6,8 @@ import CategoriesSection from './components/categories-section'
 import CategoryCarousel from './components/category-carousel'
 import AllProducts from './components/all-products'
 import { useProductStore } from '@/store/store'
+import Hr from '@/components/hr'
+import Footer from '@/components/footer'
 
 const Dashboard = () => {
     const { products, setProducts } = useProductStore();
@@ -32,9 +34,14 @@ const Dashboard = () => {
             <CustomCarousel />
             <AllProducts />
             {/* <CategoriesSection /> */}
+            <Hr />
             <CategoryCarousel type="Yeni Ürünler" />
+            <Hr />
             <CategoryCarousel type="İndirimli Ürünler" />
+            <Hr />
             <CategoryCarousel type="Çok Satanlar" />
+            <Hr />
+            <Footer />
         </div>
     )
 }

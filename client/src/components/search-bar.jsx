@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Input } from './ui/input'
 import { useProductStore } from '@/store/store'
 
 const SearchBar = () => {
+    const navigate = useNavigate();
     const { products } = useProductStore();
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
@@ -48,7 +50,9 @@ const SearchBar = () => {
             {filteredProducts.length > 0 &&
                 <div className='w-[350px] lg:w-[440px] md:mt-2 bg-[#fff] z-50 absolute flex flex-1 flex-col justify-start mb-6 md:mb-0'>
                     {filteredProducts.map((product) =>
-                        <div key={product._id} className='flex items-start justify-start border-b-2 rounded-sm cursor-pointer hover:opacity-90 hover:bg-gray-50'>
+                        <div key={product._id} className='flex items-start justify-start border-b-2 rounded-sm cursor-pointer hover:opacity-90 hover:bg-gray-50'
+                            onClick={() =>
+                                navigate('/parca/' + product.part + '/' + product._id, { state: { id: product._id } })}>
                             <img src={product.images[0]} className='size-20' />
                             <div className='flex flex-col py-1 px-2'>
                                 <span className='font-light text-xs'>{product.part} | {product.model}</span>

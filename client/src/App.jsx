@@ -8,6 +8,7 @@ import Dashboard from "./pages/dashboard";
 import Login from "./pages/login";
 import Admin from "./pages/admin";
 import Part from "./pages/part";
+import Product from "./pages/product";
 
 const router = createBrowserRouter([
   {
@@ -26,10 +27,10 @@ const router = createBrowserRouter([
     path: "/parca/:parca",
     element: <Part />
   },
-  // {
-  //   path: "/iletisim",
-  //   element: <Contact />
-  // },
+  {
+    path: "/parca/:parca/:id",
+    element: <Product />
+  },
   // {
   //   path: `/kategori/:categoryName`,
   //   element: <CategoryPage />

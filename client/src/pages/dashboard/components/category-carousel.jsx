@@ -31,7 +31,7 @@ const CategoryCarousel = ({ type }) => {
 
     return (
         categoryProducts.length <= 0 ? null : (
-            <div className="bg-[#fff] w-full container text-center py-6" >
+            <div className="w-full text-center py-6 px-2" >
                 <h3 className='text-2xl font-bold tracking-tighter sm:text-2xl pt-2 pb-6 text-[#E3020F]'>
                     {type}
                 </h3>
@@ -49,15 +49,15 @@ const CategoryCarousel = ({ type }) => {
                     <CarouselContent>
                         {categoryProducts.length > 0 && categoryProducts?.map((product) => (
                             <CarouselItem key={product._id} className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/6 cursor-pointer hover:opacity-90">
-                                <div className='px-1'>
-                                    <Card>
+                                <div>
+                                    <Card className="h-[320px] border-slate-300">
                                         <CardContent>
                                             <img
                                                 alt={product?.name}
-                                                className="pt-2 object-cover"
+                                                className="w-full h-[200px] py-2"
                                                 src={product?.images[0]}
                                             />
-                                            <div className='pt-3 font-medium'>{product?.name}</div>
+                                            <div className='h-full flex items-center justify-center text-center font-medium'>{product?.name}</div>
                                         </CardContent>
                                     </Card>
                                 </div>
