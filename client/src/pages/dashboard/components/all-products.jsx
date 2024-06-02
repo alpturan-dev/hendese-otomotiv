@@ -29,7 +29,7 @@ const AllProducts = () => {
                                         <div className='flex flex-col justify-start items-start pt-2 px-4 h-[220px]'>
                                             <span className='font-light text-xs'>Marka: Suzuki </span>
                                             <div className='py-3 font-semibold text-lg'>{product?.name}</div>
-                                            <div className='font-light text-xs'>Model: {product?.model}</div>
+                                            <div className='font-light text-xs'>Modeller: {product?.models.map((model, i) => model + ((i !== product?.models.length - 1) ? ' | ' : ""))}</div>
                                             <div className='font-light text-xs'>OEM: {product?.oem}</div>
                                             <div className={twJoin(
                                                 "pt-6 text-center font-bold text-2xl w-full h-full gap-2",

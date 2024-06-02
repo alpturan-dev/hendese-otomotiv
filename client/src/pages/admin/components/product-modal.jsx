@@ -9,9 +9,10 @@ import { parts, models, categories } from "@/constants/constants"
 import axios from 'axios'
 import { storage } from '@/config/firebaseConfig'
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { v4 } from "uuid";
 import { useToast } from "@/components/ui/use-toast"
+import imageCompression from "browser-image-compression"
 import Loading from "@/components/loading"
 
 export default function ProductModal({ element, product, products, setProducts, type = "new", getProducts }) {
@@ -25,7 +26,7 @@ export default function ProductModal({ element, product, products, setProducts, 
         stock: product?.stock || '0',
         oem: product?.oem || "",
         price: product?.price || "",
-        model: product?.model || models[0],
+        models: product?.models || [],
         part: product?.part || parts[0],
         isActive: product?.isActive || true,
         categories: product?.categories || [],
@@ -34,11 +35,25 @@ export default function ProductModal({ element, product, products, setProducts, 
     const [imageUrls, setImageUrls] = useState(product?.images || []);
     const [deleteImgUrls, setDeleteImgUrls] = useState([])
 
-    const handleImages = (e) => {
+    const handleImages = async (e) => {
         for (let i = 0; i < e.target.files.length; i++) {
             const newImage = e.target.files[i];
             newImage["id"] = Math.random();
-            setImageFiles((prevState) => [...prevState, newImage]);
+            console.log('originalFile instanceof Blob', newImage instanceof Blob); // true
+            console.log(`originalFile size ${newImage.size / 1024 / 1024} MB`);
+            const options = {
+                maxSizeMB: 1,
+                maxWidthOrHeight: 1920,
+                useWebWorker: true,
+            }
+            try {
+                const compressedFile = await imageCompression(newImage, options);
+                console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
+                console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
+                setImageFiles((prevState) => [...prevState, compressedFile]);
+            } catch (error) {
+                console.log(error);
+            }
         }
     }
 
@@ -83,7 +98,7 @@ export default function ProductModal({ element, product, products, setProducts, 
                     stock: 0,
                     oem: "",
                     price: "",
-                    model: models[0],
+                    models: [],
                     part: parts[0],
                     isActive: true,
                     categories: [],
@@ -145,7 +160,7 @@ export default function ProductModal({ element, product, products, setProducts, 
                     stock: 0,
                     oem: "",
                     price: "",
-                    model: models[0],
+                    models: [],
                     part: parts[0],
                     isActive: true,
                     categories: [],
@@ -248,48 +263,8 @@ export default function ProductModal({ element, product, products, setProducts, 
                                 })} />
                             </div>
                             <div className="grid gap-4 md:grid-cols-2">
-                                <div className="flex items-center gap-4">
-                                    <Label className="w-[200px]" htmlFor="quantity">
-                                        Stok Miktarı
-                                    </Label>
-                                    <Input id="quantity" type="number" value={newProduct.stock} onChange={(e) => setNewProduct({
-                                        ...newProduct,
-                                        stock: e.target.value
-                                    })} />
-                                </div>
-                                <div className="flex items-center gap-4">
-                                    <Label className="w-[200px]" htmlFor="model">
-                                        Model
-                                    </Label>
-                                    <Select className="max-w-[200px] w-full" id="model" multiple placeholder="Model seç..."
-                                        value={newProduct.model}
-                                        onValueChange={(e) => setNewProduct({
-                                            ...newProduct,
-                                            model: e
-                                        })}>
-                                        <SelectTrigger className="w-[310px]">
-                                            <SelectValue placeholder="Model seç..." />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectGroup>
-                                                {models.map((model, index) => (
-                                                    <SelectItem key={index} value={model}>{model}</SelectItem>
-                                                ))}
-                                            </SelectGroup>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                                <div className="flex items-center gap-4">
-                                    <Label className="w-[200px]" htmlFor="price">
-                                        Ücret
-                                    </Label>
-                                    <Input id="price" placeholder="Ücret gir..." value={newProduct.price} onChange={(e) => setNewProduct({
-                                        ...newProduct,
-                                        price: e.target.value
-                                    })} />
-                                </div>
-                                <div className="flex items-center gap-4">
-                                    <Label className="w-[200px]" htmlFor="part">
+                                <div className="flex items-start gap-4">
+                                    <Label className="w-[200px] pt-3" htmlFor="part">
                                         Parça
                                     </Label>
                                     <Select className="max-w-[200px] w-full" id="part" multiple placeholder="Parça seç..."
@@ -310,8 +285,8 @@ export default function ProductModal({ element, product, products, setProducts, 
                                         </SelectContent>
                                     </Select>
                                 </div>
-                                <div className="flex items-center gap-4">
-                                    <Label className="w-[200px]" htmlFor="oem">
+                                <div className="flex items-start gap-4">
+                                    <Label className="w-[200px] pt-3" htmlFor="oem">
                                         OEM
                                     </Label>
                                     <Input id="oem" placeholder="OEM gir..." value={newProduct.oem} onChange={(e) => setNewProduct({
@@ -319,11 +294,60 @@ export default function ProductModal({ element, product, products, setProducts, 
                                         oem: e.target.value
                                     })} />
                                 </div>
-                                <div className="flex items-center gap-4">
-                                    <Label className="w-[110px]" htmlFor="categories">
+                                <div className="flex items-start gap-4">
+                                    <Label className="w-[200px] pt-3" htmlFor="quantity">
+                                        Stok Miktarı
+                                    </Label>
+                                    <Input id="quantity" type="number" value={newProduct.stock} onChange={(e) => setNewProduct({
+                                        ...newProduct,
+                                        stock: e.target.value
+                                    })} />
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <Label className="w-[200px] pt-3" htmlFor="price">
+                                        Ücret
+                                    </Label>
+                                    <Input id="price" placeholder="Ücret gir..." value={newProduct.price} onChange={(e) => setNewProduct({
+                                        ...newProduct,
+                                        price: e.target.value
+                                    })} />
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <Label className="w-[110px] pt-3" htmlFor="models">
+                                        Modeller
+                                    </Label>
+                                    <div className="flex flex-col gap-2 pt-2">
+                                        {models.map((model, index) => {
+                                            const isChecked = newProduct.models.find((item) => item === model);
+                                            return (
+                                                <div key={index} className="flex gap-3">
+                                                    <Checkbox id={model} name="models"
+                                                        checked={isChecked ? true : false}
+                                                        onCheckedChange={() => {
+                                                            if (newProduct.models.find((item) => item === model)) {
+                                                                let newProductModels = newProduct.models.filter((item) => item !== model)
+                                                                setNewProduct({
+                                                                    ...newProduct,
+                                                                    models: newProductModels
+                                                                })
+                                                            } else {
+                                                                setNewProduct({
+                                                                    ...newProduct,
+                                                                    models: [...newProduct.models, model]
+                                                                })
+                                                            }
+                                                        }} />
+                                                    <Label htmlFor={model}>{model}</Label>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-4">
+                                    <Label className="w-[110px] pt-3" htmlFor="categories">
                                         Kategoriler
                                     </Label>
-                                    <div className="flex flex-col gap-2">
+                                    <div className="flex flex-col gap-2 pt-2">
                                         {categories.map((category, index) => {
                                             const isChecked = newProduct.categories.find((cat) => cat === category);
                                             return (
@@ -350,8 +374,8 @@ export default function ProductModal({ element, product, products, setProducts, 
                                         })}
                                     </div>
                                 </div>
-                                <div className="flex items-center">
-                                    <Label className="w-[130px]" htmlFor="isActive">
+                                <div className="flex items-start pt-4 gap-4">
+                                    <Label className="w-[110px]" htmlFor="isActive">
                                         Satışta mı?
                                     </Label>
                                     <Checkbox id="isActive" name="isActive"

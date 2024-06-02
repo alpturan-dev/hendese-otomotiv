@@ -12,7 +12,7 @@ router.post('/', async (request, response) => {
             !request.body.stock ||
             !request.body.oem ||
             !request.body.price ||
-            !request.body.model ||
+            !request.body.models ||
             !request.body.part ||
             !request.body.isActive ||
             !request.body.categories ||
@@ -87,7 +87,7 @@ router.put('/:id', async (request, response) => {
             !request.body.stock ||
             !request.body.oem ||
             !request.body.price ||
-            !request.body.model ||
+            !request.body.models ||
             !request.body.part ||
             !request.body.isActive ||
             !request.body.categories ||

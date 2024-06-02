@@ -167,9 +167,9 @@ const Admin = () => {
                         {product.oem}
                       </TableCell>
                       <TableCell>{product.price}</TableCell>
-                      <TableCell className="hidden md:table-cell">
-                        {product.model}
-                      </TableCell>
+                      {/* <TableCell className="hidden md:table-cell">
+                        {product.models[0]}
+                      </TableCell> */}
                       <TableCell className="hidden md:table-cell">
                         {product.part}
                       </TableCell>

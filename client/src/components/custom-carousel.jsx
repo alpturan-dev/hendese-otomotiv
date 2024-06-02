@@ -29,7 +29,7 @@ const CustomCarousel = () => {
                         </Card>
                     </div >
                 </CarouselItem>
-                {
+                {/* {
                     Array.from({ length: 5 }).map((_, index) => (
                         <CarouselItem key={index}>
                             <div>
@@ -41,7 +41,7 @@ const CustomCarousel = () => {
                             </div>
                         </CarouselItem>
                     ))
-                }
+                } */}
             </CarouselContent >
         </Carousel >
     )
