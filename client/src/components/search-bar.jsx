@@ -9,14 +9,20 @@ const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredProducts, setFilteredProducts] = useState([]);
 
+    const modelFilter = (product, query) => {
+        const filtered = product.models.filter((model) => model.toLowerCase().includes(query.toLowerCase()))
+        filtered.length > 0 ? true : false
+    }
+
     const handleSearch = (query) => {
         setSearchQuery(query);
         if (query === "") {
             setFilteredProducts([])
         } else {
+
             const filtered = products.filter(product =>
                 product.part.toLowerCase().includes(query.toLowerCase()) ||
-                product.model.toLowerCase().includes(query.toLowerCase()) ||
+                modelFilter(product, query) ||
                 product.name.toLowerCase().includes(query.toLowerCase()) ||
                 product.description.toLowerCase().includes(query.toLowerCase()) ||
                 product.oem.toLowerCase().includes(query.toLowerCase())
@@ -55,7 +61,7 @@ const SearchBar = () => {
                                 navigate('/parca/' + product.part + '/' + product._id, { state: { id: product._id } })}>
                             <img loading="lazy" src={product.images[0]} className='size-20' />
                             <div className='flex flex-col py-1 px-2'>
-                                <span className='font-light text-xs'>{product.part} | {product.model}</span>
+                                <span className='font-light text-xs'>{product.part} | {product?.models[0]}</span>
                                 <span className=''>{product.name}</span>
                             </div>
                         </div>)
