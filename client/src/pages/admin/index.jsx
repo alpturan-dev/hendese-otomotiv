@@ -144,69 +144,74 @@ const Admin = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {products.map((product) => (
-                    <TableRow key={product?._id}>
-                      <TableCell>
-                        <img
-                          loading="lazy"
-                          alt={product.name}
-                          className="aspect-square rounded-md object-cover"
-                          height="96"
-                          src={product.images[0]}
-                          width="96"
-                        />
-                      </TableCell>
-                      <TableCell className="font-medium">
-                        {product.name}
-                      </TableCell>
-                      <TableCell className="hidden md:table-cell">
-                        {product.description}
-                      </TableCell>
-                      <TableCell>{product.stock}</TableCell>
-                      <TableCell className="hidden md:table-cell">
-                        {product.oem}
-                      </TableCell>
-                      <TableCell>{product.price}</TableCell>
-                      {/* <TableCell className="hidden md:table-cell">
-                        {product.models[0]}
-                      </TableCell> */}
-                      <TableCell className="hidden md:table-cell">
-                        {product.part}
-                      </TableCell>
-                      <TableCell className="hidden lg:table-cell">
-                        {product.categories.map((category, index) => (
-                          <div key={index}>
-                            {category}
-                            {product.categories.length > index + 1 && ","}
-                          </div>
-                        ))}
-                      </TableCell>
-                      <TableCell className="hidden md:table-cell">
-                        {product.isActive ? "Evet" : "Hayır"}
-                      </TableCell>
-                      <TableCell className="">
-                        <ProductModal
-                          element={
-                            <>
-                              <FileEditIcon className="h-4 w-4" />
-                              <span className="sr-only">Düzenle</span>
-                            </>
-                          }
-                          type="edit"
-                          getProducts={getProducts}
-                          product={product}
-                          products={products}
-                          setProducts={setProducts}
-                        />
-                        <DeleteDialog
-                          product={product}
-                          deleteProduct={() => deleteProduct(product)}
-                        />
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  {products.length > 0 &&
+                    products.map((product) => (
+                      <TableRow key={product?._id}>
+                        <TableCell>
+                          <img
+                            loading="lazy"
+                            alt={product.name}
+                            className="aspect-square rounded-md object-cover"
+                            height="96"
+                            src={product.images[0]}
+                            width="96"
+                          />
+                        </TableCell>
+                        <TableCell className="font-medium">
+                          {product.name}
+                        </TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          {product.description}
+                        </TableCell>
+                        <TableCell>{product.stock}</TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          {product.oem}
+                        </TableCell>
+                        <TableCell>{product.price}</TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          {product?.models.map((model, i) => model + ((i !== product?.models.length - 1) ? ' | ' : ""))}
+                        </TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          {product.part}
+                        </TableCell>
+                        <TableCell className="hidden lg:table-cell">
+                          {product.categories.map((category, index) => (
+                            <div key={index}>
+                              {category}
+                              {product.categories.length > index + 1 && ","}
+                            </div>
+                          ))}
+                        </TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          {product.isActive ? "Evet" : "Hayır"}
+                        </TableCell>
+                        <TableCell className="">
+                          <ProductModal
+                            element={
+                              <>
+                                <FileEditIcon className="h-4 w-4" />
+                                <span className="sr-only">Düzenle</span>
+                              </>
+                            }
+                            type="edit"
+                            getProducts={getProducts}
+                            product={product}
+                            products={products}
+                            setProducts={setProducts}
+                          />
+                          <DeleteDialog
+                            product={product}
+                            deleteProduct={() => deleteProduct(product)}
+                          />
+                        </TableCell>
+                      </TableRow>
+                    ))}
                 </TableBody>
               </Table>
+              {products.length === 0 &&
+                <div className="w-full text-center font-bold text-xl py-4">
+                  Hiç parça yok...
+                </div>}
             </div>
           </div>
         </main>
