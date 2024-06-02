@@ -30,9 +30,9 @@ export default function ProductSection({ product }) {
                                     <PackageIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
                                     <span className="text-gray-500 dark:text-gray-400">OEM: {product.oem}</span>
                                 </div>
-                                <div className="flex items-center gap-2">
+                                <div className="flex items-start gap-2">
                                     <CarIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
-                                    <span className="text-gray-500 dark:text-gray-400">Araç Uyumu: {product.model}</span>
+                                    <span className="text-gray-500 dark:text-gray-400">Araç Uyumu: {product?.models.map((model, i) => model + ((i !== product?.models.length - 1) ? ' | ' : ""))}</span>
                                 </div>
                             </div>
                         </div>
