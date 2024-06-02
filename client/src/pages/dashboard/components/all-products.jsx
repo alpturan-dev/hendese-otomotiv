@@ -16,9 +16,12 @@ const AllProducts = () => {
                     {products.length > 0 && products?.map((product) => (
                         <div key={product._id} className="grid cursor-pointer hover:opacity-90 rounded-sm" onClick={() => navigate('/parca/' + product.part + '/' + product._id, { state: { id: product._id } })}>
                             <div>
-                                <Card className="h-[560px] border-slate-400">
+                                <Card className={twJoin(
+                                    "h-[560px] border-slate-400",
+                                    product.stock === 0 && 'opacity-60')}  >
                                     <CardContent className="p-0">
                                         <img
+                                            loading="lazy"
                                             alt={product?.name}
                                             className="w-full object-cover h-[300px]"
                                             src={product?.images[0]}
@@ -32,7 +35,7 @@ const AllProducts = () => {
                                                 "pt-6 text-center font-bold text-2xl w-full h-full gap-2",
                                                 product.stock === 0 ? "text-red-600" : "text-green-600"
                                             )}>
-                                                {product.price === "FİYAT SORUNUZ" ? "FİYAT SORUNUZ" : product.price + ' ₺'}
+                                                {product.price === "FİYAT SORUNUZ" ? "FİYAT SORUNUZ" : product.stock === 0 ? "" : product.price + ' ₺'}
                                             </div>
                                         </div>
                                         <div className={twJoin(

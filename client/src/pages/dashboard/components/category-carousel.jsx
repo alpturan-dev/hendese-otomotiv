@@ -19,7 +19,7 @@ const CategoryCarousel = ({ type }) => {
             setCategoryProducts(products);
         } else {
             filteredProducts = products.filter(product =>
-                product.categories.includes(type)
+                product.categories.includes(type) && product.stock > 0
             );
             setCategoryProducts(filteredProducts);
         }
@@ -32,7 +32,7 @@ const CategoryCarousel = ({ type }) => {
     return (
         categoryProducts.length <= 0 ? null : (
             <div className="w-full text-center py-6 px-2" >
-                <h3 className='text-2xl font-bold tracking-tighter sm:text-2xl pt-2 pb-6 text-[#E3020F]'>
+                <h3 className='text-2xl font-bold tracking-tighter sm:text-4xl pt-2 pb-6 text-[#E3020F]'>
                     {type}
                 </h3>
                 <Carousel
@@ -50,14 +50,21 @@ const CategoryCarousel = ({ type }) => {
                         {categoryProducts.length > 0 && categoryProducts?.map((product) => (
                             <CarouselItem key={product._id} className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/6 cursor-pointer hover:opacity-90">
                                 <div>
-                                    <Card className="h-[320px] border-slate-300">
+                                    <Card className="h-[340px] border-slate-300">
                                         <CardContent>
                                             <img
+                                                loading="lazy"
                                                 alt={product?.name}
-                                                className="w-full h-[200px] py-2"
+                                                className="w-full object-cover h-[200px] pb-2"
                                                 src={product?.images[0]}
                                             />
-                                            <div className='h-full flex items-center justify-center text-center font-medium'>{product?.name}</div>
+                                            <div className='flex flex-col justify-around h-[140px]'>
+                                                <div className='h-full flex items-center justify-center text-center font-medium px-2'>{product?.name}</div>
+                                                <span className='h-full text-xl font-bold '>
+                                                    {product.price === "FİYAT SORUNUZ" ? "FİYAT SORUNUZ"
+                                                        : product.price + ' ₺'}
+                                                </span>
+                                            </div>
                                         </CardContent>
                                     </Card>
                                 </div>

@@ -53,7 +53,7 @@ const SearchBar = () => {
                         <div key={product._id} className='flex items-start justify-start border-b-2 rounded-sm cursor-pointer hover:opacity-90 hover:bg-gray-50'
                             onClick={() =>
                                 navigate('/parca/' + product.part + '/' + product._id, { state: { id: product._id } })}>
-                            <img src={product.images[0]} className='size-20' />
+                            <img loading="lazy" src={product.images[0]} className='size-20' />
                             <div className='flex flex-col py-1 px-2'>
                                 <span className='font-light text-xs'>{product.part} | {product.model}</span>
                                 <span className=''>{product.name}</span>

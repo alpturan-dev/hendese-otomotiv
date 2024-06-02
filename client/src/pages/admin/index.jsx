@@ -62,7 +62,7 @@ const Admin = () => {
             duration: 3000,
           });
         });
-    } catch (error) {}
+    } catch (error) { }
     setLoading(false);
   };
 
@@ -148,6 +148,7 @@ const Admin = () => {
                     <TableRow key={product?._id}>
                       <TableCell>
                         <img
+                          loading="lazy"
                           alt={product.name}
                           className="aspect-square rounded-md object-cover"
                           height="96"
