@@ -4,17 +4,17 @@ export default function Footer() {
     return (
         <footer className="bg-gray-100 py-8 dark:bg-gray-800">
             <div className="container mx-auto flex flex-col items-center justify-center space-y-4">
-                <a href="#" className="flex items-center space-x-2" prefetch={false}>
-                    <img src={logo} className='w-40 h-24' />
+                <a href="#" className="flex items-center space-x-2">
+                    <img src={logo} className='w-[8rem] md:w-[10rem] h-[5rem] md:h-[6rem] mx-auto md:mx-0' />
                 </a>
                 <div className="flex items-center space-x-4">
-                    <a href="https://www.facebook.com/hendeseoto/" aria-label="Facebook" prefetch={false}>
+                    <a href="https://www.facebook.com/hendeseoto/" aria-label="Facebook">
                         <FacebookIcon className="h-6 w-6 text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-gray-300" />
                     </a>
-                    <a href="https://wa.me/905303604105" aria-label="WhatsApp" prefetch={false}>
+                    <a href="https://wa.me/905303604105" aria-label="WhatsApp">
                         <WhatsAppIcon className="h-6 w-6 text-green-500 hover:text-green-700 dark:text-green-400 dark:hover:text-gray-300" />
                     </a>
-                    <a href="https://hendeseoto.sahibinden.com/" aria-label="Sahibinden" prefetch={false}>
+                    <a href="https://hendeseoto.sahibinden.com/" aria-label="Sahibinden">
                         <img style={{ width: "24px", height: "24px" }} src="https://s0.shbdn.com/assets/images/sahibinden-logo:62af0108bd5214afd5c4e1595fc17339.png" alt="Sahibinden" />
                     </a>
                 </div>
