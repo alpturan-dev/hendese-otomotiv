@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import AllProducts from '../dashboard/components/all-products'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
@@ -8,10 +8,11 @@ import axios from 'axios'
 
 const AllProductsPage = () => {
     const { pathname } = useLocation();
-
+    const [loading, setLoading] = useState(false);
     const { setProducts } = useProductStore();
 
     const getProducts = async () => {
+        setLoading(true);
         await axios
             .get(import.meta.env.VITE_API_URL + "/api/products")
             .then((response) => {
@@ -20,6 +21,9 @@ const AllProductsPage = () => {
             })
             .catch((error) => {
                 console.log(error);
+            })
+            .finally(() => {
+                setLoading(false)
             })
     };
 
@@ -35,7 +39,7 @@ const AllProductsPage = () => {
     return (
         <div className='bg-[#F7F7F7]'>
             <Navbar />
-            <AllProducts page={true} />
+            <AllProducts loading={loading} page={true} />
             <Footer />
         </div>
     )

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Navbar from '@/components/navbar'
 import CustomCarousel from '@/components/custom-carousel'
@@ -8,11 +8,14 @@ import AllProducts from './components/all-products'
 import { useProductStore } from '@/store/store'
 import Hr from '@/components/hr'
 import Footer from '@/components/footer'
+import Loading from '@/components/loading'
 
 const Dashboard = () => {
     const { products, setProducts } = useProductStore();
+    const [loading, setLoading] = useState(false);
 
     const getProducts = async () => {
+        setLoading(true);
         await axios
             .get(import.meta.env.VITE_API_URL + "/api/products")
             .then((response) => {
@@ -21,6 +24,9 @@ const Dashboard = () => {
             })
             .catch((error) => {
                 console.log(error);
+            })
+            .finally(() => {
+                setLoading(false)
             })
     };
 
@@ -32,7 +38,7 @@ const Dashboard = () => {
         <div className='bg-[#F7F7F7]'>
             <Navbar />
             <CustomCarousel />
-            <AllProducts />
+            <AllProducts loading={loading} />
             {/* <CategoriesSection /> */}
             <Hr />
             <CategoryCarousel type="Yeni Ürünler" />

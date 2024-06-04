@@ -5,8 +5,9 @@ import { useProductStore } from '@/store/store'
 import { twJoin, twMerge } from 'tailwind-merge';
 import { Button } from '@/components/ui/button';
 import ProductCard from '@/components/product-card';
+import { SkeletonCard } from '@/components/skeleton';
 
-const AllProducts = ({ page = false }) => {
+const AllProducts = ({ loading, page = false }) => {
     const { products } = useProductStore();
     const navigate = useNavigate();
     return (
@@ -17,28 +18,37 @@ const AllProducts = ({ page = false }) => {
                     {!page && (
                         <div className='pt-2'>
                             <span className='pt-1'>Toplam {products.length} ürün - </span>
-                            <a onClick={() => navigate('/tum-parcalar')} className='underline cursor-pointer'>
+                            <a onClick={() => navigate('/tum-parcalar')} className='text-[#E3020F] underline cursor-pointer'>
                                 devamı...
                             </a>
                         </div>
                     )}
                 </div>
                 <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700" />
-                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-                    {products.length > 0 && products?.map((product, i) => {
-                        if (!page) {
-                            if (i < 8) {
-                                return (
-                                    <ProductCard product={product} />
-                                )
-                            }
-                        } else {
-                            return (
-                                <ProductCard product={product} />
-                            )
-                        }
-                    })}
-                </div>
+                {loading ?
+                    (
+                        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+                            {[1, 2, 3, 4, 5, 6, 7, 8].map(() => (
+                                <SkeletonCard />
+                            ))}
+                        </div>
+                    ) : (
+                        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+                            {products.length > 0 && products?.map((product, i) => {
+                                if (!page) {
+                                    if (i < 8) {
+                                        return (
+                                            <ProductCard product={product} />
+                                        )
+                                    }
+                                } else {
+                                    return (
+                                        <ProductCard product={product} />
+                                    )
+                                }
+                            })}
+                        </div>
+                    )}
                 {!page && (
                     <div className='mt-6 flex justify-center'>
                         <Button variant="destructive" className='w-1/4 text-center' onClick={() => navigate('/tum-parcalar')}>
