@@ -9,7 +9,7 @@ import Login from "./pages/login";
 import Admin from "./pages/admin";
 import Part from "./pages/part";
 import Product from "./pages/product";
-import AllProductsPage from "./pages/all-products-page/all-products-page";
+import AllProductsPage from "./pages/all-products-page";
 
 const router = createBrowserRouter([
   {
