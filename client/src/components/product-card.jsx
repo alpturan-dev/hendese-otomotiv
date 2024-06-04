@@ -33,7 +33,7 @@ const ProductCard = ({ product }) => {
                         'w-full h-[25px] flex items-center justify-center text-white font-bold text-sm',
                         product.stock === 0 ? "bg-red-600" : "bg-green-600")
                     }>
-                        {product.stock === 0 ? "STOKTA YOK" : "STOKTA VAR"}
+                        {product.stock === 0 ? "STOKTA YOK" : "STOKTA"}
                     </div>
                 </CardContent>
             </Card>
