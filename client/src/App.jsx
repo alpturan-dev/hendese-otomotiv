@@ -9,6 +9,7 @@ import Login from "./pages/login";
 import Admin from "./pages/admin";
 import Part from "./pages/part";
 import Product from "./pages/product";
+import AllProductsPage from "./pages/all-products-page/all-products-page";
 
 const router = createBrowserRouter([
   {
@@ -31,10 +32,10 @@ const router = createBrowserRouter([
     path: "/parca/:parca/:id",
     element: <Product />
   },
-  // {
-  //   path: `/kategori/:categoryName`,
-  //   element: <CategoryPage />
-  // }
+  {
+    path: `/tum-parcalar`,
+    element: <AllProductsPage />
+  }
 ]);
 function App() {
   return (
