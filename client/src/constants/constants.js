@@ -23,7 +23,8 @@ export const models = [
     "GRAND VITARA 98-05",
     "GRAND VITARA 06-12",
     "GRAND VITARA XL-7",
-    "SWIFT"
+    "SWIFT",
+    "JIMNY"
 ];
 
 export const categories = [
