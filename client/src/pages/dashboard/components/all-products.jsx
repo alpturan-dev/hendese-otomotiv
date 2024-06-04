@@ -51,7 +51,7 @@ const AllProducts = ({ loading, page = false }) => {
                     )}
                 {!page && (
                     <div className='mt-6 flex justify-center'>
-                        <Button variant="destructive" className='w-1/4 text-center' onClick={() => navigate('/tum-parcalar')}>
+                        <Button variant="destructive" className='w-1/2 sm:w-2/5 md:w-1/3 text-center' onClick={() => navigate('/tum-parcalar')}>
                             Daha fazla parça göster...
                         </Button>
                     </div>
