@@ -8,10 +8,12 @@ import {
 } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
 import { useProductStore } from '@/store/store'
+import { useNavigate } from 'react-router-dom'
 
 const CategoryCarousel = ({ type }) => {
     const { products } = useProductStore();
     const [categoryProducts, setCategoryProducts] = useState([])
+    const navigate = useNavigate();
 
     const getCategoryProducts = () => {
         let filteredProducts = [];
@@ -48,7 +50,7 @@ const CategoryCarousel = ({ type }) => {
                 >
                     <CarouselContent>
                         {categoryProducts.length > 0 && categoryProducts?.map((product) => (
-                            <CarouselItem key={product._id} className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/6 cursor-pointer hover:opacity-90">
+                            <CarouselItem key={product._id} className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/6 cursor-pointer hover:opacity-90" onClick={() => navigate('/parca/' + product.part + '/' + product._id, { state: { id: product._id } })}>
                                 <div>
                                     <Card className="h-[340px] border-slate-300">
                                         <CardContent>

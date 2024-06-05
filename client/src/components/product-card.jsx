@@ -1,8 +1,11 @@
 import React from 'react'
 import { Card, CardContent } from './ui/card'
 import { twJoin } from 'tailwind-merge'
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
+    const navigate = useNavigate();
+
     return (
         <div key={product._id} className="grid cursor-pointer hover:opacity-90" onClick={() => navigate('/parca/' + product.part + '/' + product._id, { state: { id: product._id } })}>
             <Card className={twJoin(
