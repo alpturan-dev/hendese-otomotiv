@@ -11,7 +11,7 @@ import carousel1 from '../assets/carousel-1.jpeg'
 
 const CustomCarousel = () => {
     return (
-        <Carousel className="hidden sm:block mx-auto w-full pt-8" opts={{
+        <Carousel className="hidden sm:block mx-auto w-full" opts={{
             loop: true
         }}
             plugins={[
@@ -22,7 +22,7 @@ const CustomCarousel = () => {
             <CarouselContent>
                 <CarouselItem key={carousel1} >
                     <div>
-                        <Card className="bg-[#F7F7F7]">
+                        <Card>
                             <CardContent className=" h-[450px] flex items-center justify-center p-0">
                                 <img src={carousel1} className="h-full" />
                             </CardContent>

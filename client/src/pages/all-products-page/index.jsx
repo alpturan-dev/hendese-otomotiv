@@ -37,7 +37,7 @@ const AllProductsPage = () => {
     }, [pathname]);
 
     return (
-        <div className='bg-[#F7F7F7]'>
+        <div>
             <Navbar />
             <AllProducts loading={loading} page={true} />
             <Footer />

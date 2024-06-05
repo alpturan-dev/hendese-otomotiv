@@ -1,8 +1,8 @@
-import logo from '../assets/logo.jpeg'
+import logo from '../assets/logo.png'
 
 export default function Footer() {
     return (
-        <footer className="bg-gray-100 py-8 dark:bg-gray-800">
+        <footer className="bg-gray-100 py-4 dark:bg-gray-800">
             <div className="container mx-auto flex flex-col items-center justify-center space-y-4">
                 <a href="#" className="flex items-center space-x-2">
                     <img src={logo} className='w-[8rem] md:w-[10rem] h-[5rem] md:h-[6rem] mx-auto md:mx-0' />

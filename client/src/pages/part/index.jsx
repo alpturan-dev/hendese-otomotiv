@@ -30,7 +30,7 @@ const Part = () => {
 
     return (
         <Loading loading={loading}>
-            <div className='bg-[#F7F7F7]'>
+            <div>
                 <Navbar />
                 <div className='mx-auto w-full lg:w-3/4 max-w-[1000px]'>
                     <hr className='py-2' />

@@ -1,6 +1,6 @@
 import { parts } from '@/constants/constants'
 import React from 'react'
-import logo from '../../../assets/logo.jpeg'
+import logo from '../../../assets/logo.png'
 import motor from '../../../assets/motor.jpeg'
 import { useNavigate } from 'react-router-dom'
 
