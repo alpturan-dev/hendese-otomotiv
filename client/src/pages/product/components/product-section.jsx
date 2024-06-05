@@ -41,8 +41,11 @@ export default function ProductSection({ product }) {
                                 {product.description}
                             </p>
                             <div className="flex items-center gap-10 pt-8">
-                                <div className="text-4xl font-bold">
-                                    {product.price === "FİYAT SORUNUZ" ? "FİYAT SORUNUZ" : product.price + ' ₺'}</div>
+                                {product.stock > 0 &&
+                                    <div className="text-4xl font-bold">
+                                        {product.price === "FİYAT SORUNUZ" ? "FİYAT SORUNUZ" : product.price + ' ₺'}
+                                    </div>
+                                }
                                 <Button className="w-[200px] h-[60px] bg-[#E3020F] text-white">
                                     <span className="text-xl py-4">
                                         Bizi Arayın <br /> +90 530 360 41 05

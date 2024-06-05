@@ -1,8 +1,6 @@
 import React from 'react'
-import { Card, CardContent } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
 import { useProductStore } from '@/store/store'
-import { twJoin, twMerge } from 'tailwind-merge';
 import { Button } from '@/components/ui/button';
 import ProductCard from '@/components/product-card';
 import { SkeletonCard } from '@/components/skeleton';
@@ -12,12 +10,13 @@ const AllProducts = ({ loading, page = false }) => {
     const navigate = useNavigate();
     return (
         <div className='w-full'>
-            <div className="container py-6 px-auto w-full lg:w-3/4 max-w-[1000px]" >
+            <div className="py-6 px-4 sm:mx-auto sm:px-auto w-full lg:w-3/4 max-w-[1000px]" >
                 <div className='flex justify-between'>
                     <h2 className="text-xl font-bold tracking-tighter sm:text-2xl md:text-3xl text-[#E3020F]">Tüm Parçalar</h2>
                     {!page && (
-                        <div className='pt-2'>
-                            <span className='pt-1'>Toplam {products.length} ürün - </span>
+                        <div className='text-xs sm:text-base flex flex-col justify-end items-end sm:flex-row sm:pt-2'>
+                            <span className='pt-1'>Toplam {products.length} ürün</span>
+                            <span className='hidden sm:flex'>{`\xa0`}</span>
                             <a onClick={() => navigate('/tum-parcalar')} className='text-[#E3020F] underline cursor-pointer'>
                                 devamı...
                             </a>
@@ -51,8 +50,8 @@ const AllProducts = ({ loading, page = false }) => {
                     )}
                 {!page && (
                     <div className='mt-6 flex justify-center'>
-                        <Button variant="destructive" className='w-1/2 sm:w-2/5 md:w-1/3 text-center' onClick={() => navigate('/tum-parcalar')}>
-                            Daha fazla parça göster...
+                        <Button variant="destructive" className='w-2/3 sm:w-2/5 md:w-1/3 text-center' onClick={() => navigate('/tum-parcalar')}>
+                            Daha fazla parça göster
                         </Button>
                     </div>
                 )}

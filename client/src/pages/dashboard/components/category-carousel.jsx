@@ -52,7 +52,7 @@ const CategoryCarousel = ({ type }) => {
                         {categoryProducts.length > 0 && categoryProducts?.map((product) => (
                             <CarouselItem key={product._id} className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/6 cursor-pointer hover:opacity-90" onClick={() => navigate('/parca/' + product.part + '/' + product._id, { state: { id: product._id } })}>
                                 <div>
-                                    <Card className="h-[340px] border-slate-300">
+                                    <Card className="h-[300px] border-slate-300">
                                         <CardContent>
                                             <img
                                                 loading="lazy"
@@ -60,9 +60,9 @@ const CategoryCarousel = ({ type }) => {
                                                 className="w-full object-cover h-[200px] pb-2"
                                                 src={product?.images[0]}
                                             />
-                                            <div className='flex flex-col justify-around items-center h-[140px]'>
-                                                <div className='h-full flex items-center justify-center text-center font-medium px-2'>{product?.name}</div>
-                                                <span className='h-full w-full text-2xl font-bold bg-green-600 text-white flex justify-center items-center'>
+                                            <div className='flex flex-col justify-around items-center h-[100px]'>
+                                                <div className='text-sm h-full flex items-center justify-center text-center font-medium px-2'>{product?.name}</div>
+                                                <span className='h-[40px] text-xs w-full font-bold bg-green-600 text-white flex justify-center items-center'>
                                                     {product.price === "FİYAT SORUNUZ" ? "FİYAT SORUNUZ"
                                                         : product.price + ' ₺'}
                                                 </span>

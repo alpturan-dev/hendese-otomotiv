@@ -26,9 +26,7 @@ const ProductCard = ({ product }) => {
                             <div className='font-light text-xs'>OEM: {product?.oem}</div>
                         </div>
                         <div className={twJoin(
-                            "pt-1 text-center font-bold text-xl w-full h-[45px] gap-2",
-                            product.stock === 0 ? "text-red-600" : "text-green-600"
-                        )}>
+                            "my-auto py-auto text-center font-bold text-xl w-full h-[45px] gap-2")}>
                             {product.price === "FİYAT SORUNUZ" ? "FİYAT SORUNUZ" : product.stock === 0 ? "" : product.price + ' ₺'}
                         </div>
                     </div>
