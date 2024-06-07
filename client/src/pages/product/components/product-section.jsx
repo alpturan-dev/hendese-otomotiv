@@ -26,7 +26,11 @@ export default function ProductSection({ product }) {
                     <div className="grid gap-4">
                         <div className="flex flex-col">
                             <div className="relative flex items-center justify-center select-none">
-                                <ArrowLeft onClick={() => handleImgIndex("left")} className="z-50 w-14 text-white cursor-pointer absolute left-0 top-1/2 transform -translate-y-1/2 h-full flex items-center p-2" />
+                                <button className="z-50 cursor-pointer absolute left-0 top-1/2 transform -translate-y-1/2 h-full flex items-center" onClick={() => handleImgIndex("left")}>
+                                    <div className="ml-2 rounded h-10 w-8 bg-white opacity-60 flex items-center">
+                                        <ArrowLeft strokeWidth={4} className="w-20 " />
+                                    </div>
+                                </button>
                                 <Zoom>
                                     <img
                                         src={product.images[imgIndex]}
@@ -36,7 +40,11 @@ export default function ProductSection({ product }) {
                                         className="aspect-square object-cover border border-gray-200 w-full rounded-lg overflow-hidden"
                                     />
                                 </Zoom>
-                                <ArrowRight onClick={() => handleImgIndex("right")} className="w-14 text-white cursor-pointer absolute right-0 top-1/2 transform -translate-y-1/2 h-full flex items-center p-2" />
+                                <button className="cursor-pointer absolute right-0 top-1/2 transform -translate-y-1/2 h-full flex items-center" onClick={() => handleImgIndex("right")}>
+                                    <div className="mr-2 rounded h-10 w-8 bg-white opacity-60 flex items-center">
+                                        <ArrowRight strokeWidth={4} className="w-20 " />
+                                    </div>
+                                </button>
                             </div>
 
                             <div className="pt-2 flex gap-4">
