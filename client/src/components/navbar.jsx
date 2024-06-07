@@ -1,6 +1,5 @@
 import React from 'react'
 import logo from '../assets/logo.png'
-import { Input } from './ui/input'
 import { Mail, MapPin } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import SearchBar from './search-bar'

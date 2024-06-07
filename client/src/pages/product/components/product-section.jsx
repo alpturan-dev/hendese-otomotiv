@@ -1,19 +1,58 @@
 import { Button } from "@/components/ui/button"
+import { useState } from "react"
 import { twJoin } from "tailwind-merge"
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 
 export default function ProductSection({ product }) {
+    // Simple access to the helpers
+    const [imgIndex, setImgIndex] = useState(0);
+    const handleImgIndex = (direction) => {
+        if (direction === "right" && imgIndex === product.images.length - 1) {
+            setImgIndex(0)
+            return
+        }
+        if (direction === "left" && imgIndex === 0) {
+            setImgIndex(product.images.length - 1)
+            return
+        }
+        setImgIndex(direction === "left" ? imgIndex - 1 : imgIndex + 1)
+    }
     return (
         <div className='w-full'>
-            <div className="container py-6 px-auto w-full lg:w-3/4 max-w-[1000px]" >
+            <div className="container px-auto w-full lg:w-3/4 max-w-[1000px]" >
                 <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-start max-w-6xl px-4 mx-auto py-6">
                     <div className="grid gap-4">
-                        <img
-                            src={product.images[0]}
-                            alt="Product Image"
-                            width={600}
-                            height={600}
-                            className="aspect-square object-cover border border-gray-200 w-full rounded-lg overflow-hidden dark:border-gray-800"
-                        />
+                        <div className="flex flex-col">
+                            <div className="relative flex items-center justify-center select-none">
+                                <ArrowLeft onClick={() => handleImgIndex("left")} className="z-50 w-14 text-white cursor-pointer absolute left-0 top-1/2 transform -translate-y-1/2 h-full flex items-center p-2" />
+                                <Zoom>
+                                    <img
+                                        src={product.images[imgIndex]}
+                                        alt="Product Image"
+                                        width={600}
+                                        height={600}
+                                        className="aspect-square object-cover border border-gray-200 w-full rounded-lg overflow-hidden"
+                                    />
+                                </Zoom>
+                                <ArrowRight onClick={() => handleImgIndex("right")} className="w-14 text-white cursor-pointer absolute right-0 top-1/2 transform -translate-y-1/2 h-full flex items-center p-2" />
+                            </div>
+
+                            <div className="pt-2 flex gap-4">
+                                {product.images.map((img, i) => (
+                                    <button key={i} onClick={() => setImgIndex(i)}>
+                                        <img
+                                            src={img}
+                                            alt="Product Image"
+                                            width={100}
+                                            height={100}
+                                            className={twJoin("aspect-square object-cover border border-gray-200 rounded-lg overflow-hidden", i === imgIndex && "border-2 border-gray-900")}
+                                        />
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                     <div className="grid gap-4 md:gap-10 items-start">
                         <div className="grid gap-4">

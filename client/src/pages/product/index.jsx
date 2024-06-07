@@ -33,6 +33,7 @@ const Product = () => {
     return (
         <div>
             <Navbar />
+            <hr className='h-1' />
             {loading
                 ?
                 <div className='w-full'>
