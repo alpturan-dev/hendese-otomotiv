@@ -307,10 +307,24 @@ export default function ProductModal({ element, product, products, setProducts, 
                                     <Label className="w-[200px] pt-3" htmlFor="price">
                                         Ücret
                                     </Label>
-                                    <Input id="price" placeholder="Ücret gir..." value={newProduct.price} onChange={(e) => setNewProduct({
+                                    <Input disabled={newProduct.price === "FİYAT SORUNUZ"} id="price" placeholder="Ücret gir..." value={newProduct.price} onChange={(e) => setNewProduct({
                                         ...newProduct,
                                         price: e.target.value
                                     })} />
+                                    <Checkbox className="self-center" name="priceCheckbox"
+                                        onCheckedChange={(checked) => {
+                                            if (checked) {
+                                                setNewProduct({
+                                                    ...newProduct,
+                                                    price: "FİYAT SORUNUZ"
+                                                })
+                                            } else {
+                                                setNewProduct({
+                                                    ...newProduct,
+                                                    price: 0
+                                                })
+                                            }
+                                        }} />
                                 </div>
                                 <div className="flex items-start gap-4">
                                     <Label className="w-[110px] pt-3" htmlFor="models">
