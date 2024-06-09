@@ -3,7 +3,7 @@ import logo from '../assets/logo.png'
 export default function Footer() {
     return (
         <footer className="bg-gray-100 py-4 dark:bg-gray-800">
-            <div className="container mx-auto flex flex-col items-center justify-center space-y-4">
+            <div className="sm:container mx-auto flex flex-col items-center justify-center space-y-4">
                 <a href="#" className="flex items-center space-x-2">
                     <img src={logo} className='w-[8rem] md:w-[10rem] h-[5rem] md:h-[6rem] mx-auto md:mx-0' />
                 </a>
@@ -18,7 +18,7 @@ export default function Footer() {
                         <img style={{ width: "24px", height: "24px" }} src="https://s0.shbdn.com/assets/images/sahibinden-logo:62af0108bd5214afd5c4e1595fc17339.png" alt="Sahibinden" />
                     </a>
                 </div>
-                <div className='text-sm'>
+                <div className='text-xs sm:text-sm'>
                     Hendese Otomotiv © 2024 | Made by <a href="https://www.linkedin.com/in/abdurrahman-alpturan-798b94202/" className='underline'>alpturan-dev</a>
                 </div>
             </div>
