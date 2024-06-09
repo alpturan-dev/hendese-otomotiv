@@ -88,9 +88,9 @@ export default function ProductSection({ product }) {
                                     </div>
                                 }
                                 <Button className="w-[200px] h-[60px] bg-[#E3020F] text-white">
-                                    <span className="text-base sm:text-xl py-4">
+                                    <a href="tel:+90-530-360-4105" className="text-base sm:text-xl py-4">
                                         Bizi Arayın <br /> +90 530 360 41 05
-                                    </span>
+                                    </a>
                                 </Button>
                             </div>
                         </div>

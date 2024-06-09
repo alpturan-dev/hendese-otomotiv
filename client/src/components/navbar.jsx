@@ -33,14 +33,14 @@ const Navbar = () => {
                     </div>
                     <SearchBar />
                 </div>
-                <div className='w-1/4 md:flex-row items-center justify-end pt-12 hidden md:flex'>
+                <a href="tel:+90-530-360-4105" className='cursor-pointer hover:opacity-80 w-1/4 md:flex-row items-center justify-end pt-12 hidden md:flex'>
                     <div className='flex flex-col items-center'>
                         Bize Ulaşın!
                         <span className='text-base md:text-xl text-[#E3020F] font-bold'>
                             +90 530 360 41 05
                         </span>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     )
