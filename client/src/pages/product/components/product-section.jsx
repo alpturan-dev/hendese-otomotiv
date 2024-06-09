@@ -21,51 +21,45 @@ export default function ProductSection({ product }) {
     }
     return (
         <div className='w-full'>
-            <div className="container px-auto w-full lg:w-3/4 max-w-[1000px]" >
-                <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-start max-w-6xl px-4 mx-auto py-6">
-                    <div className="grid gap-4">
-                        <div className="flex flex-col">
-                            <div className="relative flex items-center justify-center select-none">
-                                <button className="z-50 cursor-pointer absolute left-0 top-1/2 transform -translate-y-1/2 h-full flex items-center" onClick={() => handleImgIndex("left")}>
-                                    <div className="ml-2 rounded h-10 w-8 bg-white opacity-60 flex items-center">
-                                        <ArrowLeft strokeWidth={4} className="w-20 " />
-                                    </div>
-                                </button>
-                                <Zoom>
-                                    <img
-                                        src={product.images[imgIndex]}
-                                        alt="Product Image"
-                                        width={600}
-                                        height={600}
-                                        className="aspect-square object-cover border border-gray-200 w-full rounded-lg overflow-hidden"
-                                    />
-                                </Zoom>
-                                <button className="cursor-pointer absolute right-0 top-1/2 transform -translate-y-1/2 h-full flex items-center" onClick={() => handleImgIndex("right")}>
-                                    <div className="mr-2 rounded h-10 w-8 bg-white opacity-60 flex items-center">
-                                        <ArrowRight strokeWidth={4} className="w-20 " />
-                                    </div>
-                                </button>
-                            </div>
+            <div className="sm:container mx-auto w-full lg:w-3/4 max-w-[1000px]" >
+                <div className="grid md:grid-cols-2 gap-6 lg:gap-12 max-w-6xl px-2 sm:px-4 mx-auto py-6">
+                    <div className="max-w-none w-full sm:max-w-[450px] flex flex-col">
+                        <div className="relative flex items-center justify-center select-none">
+                            <button className="z-50 cursor-pointer absolute left-0 top-1/2 transform -translate-y-1/2 h-full flex items-center" onClick={() => handleImgIndex("left")}>
+                                <div className="ml-2 rounded h-8 w-8 bg-white opacity-60 flex items-center">
+                                    <ArrowLeft strokeWidth={4} className="pl-1" />
+                                </div>
+                            </button>
+                            <Zoom>
+                                <img
+                                    src={product.images[imgIndex]}
+                                    alt="Product Image"
+                                    className="w-[%95] h-[%95] aspect-square object-cover border border-gray-200 rounded-lg overflow-hidden"
+                                />
+                            </Zoom>
+                            <button className="cursor-pointer absolute right-0 top-1/2 transform -translate-y-1/2 h-full flex items-center" onClick={() => handleImgIndex("right")}>
+                                <div className="mr-2 rounded h-8 w-8 bg-white opacity-60 flex items-center">
+                                    <ArrowRight strokeWidth={4} className="pl-1" />
+                                </div>
+                            </button>
+                        </div>
 
-                            <div className="pt-2 flex gap-4">
-                                {product.images.map((img, i) => (
-                                    <button key={i} onClick={() => setImgIndex(i)}>
-                                        <img
-                                            src={img}
-                                            alt="Product Image"
-                                            width={100}
-                                            height={100}
-                                            className={twJoin("aspect-square object-cover border border-gray-200 rounded-lg overflow-hidden", i === imgIndex && "border-2 border-gray-900")}
-                                        />
-                                    </button>
-                                ))}
-                            </div>
+                        <div className="pt-2 grid grid-cols-4 gap-2">
+                            {product.images.map((img, i) => (
+                                <button className="" key={i} onClick={() => setImgIndex(i)}>
+                                    <img
+                                        src={img}
+                                        alt="Product Image"
+                                        className={twJoin("w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] aspect-square object-cover border border-gray-200 rounded-lg overflow-hidden", i === imgIndex && "border-2 border-gray-900")}
+                                    />
+                                </button>
+                            ))}
                         </div>
                     </div>
-                    <div className="grid gap-4 md:gap-10 items-start">
+                    <div className="flex flex-col gap-10 items-start">
                         <div className="grid gap-4">
-                            <h1 className="font-bold text-2xl lg:text-3xl pb-4">{product.name}</h1>
-                            <div className="grid gap-2">
+                            <h1 className="font-bold text-xl lg:text-2xl sm:pb-4">{product.name}</h1>
+                            <div className="grid gap-2 text-xs">
                                 <div className="flex items-center gap-2">
                                     <TruckIcon className={twJoin("w-5 h-5",
                                         product.stock === 0 ? "text-red-500" : "text-green-500")} />
@@ -84,17 +78,17 @@ export default function ProductSection({ product }) {
                             </div>
                         </div>
                         <div className="grid gap-4">
-                            <p className="text-gray-500 dark:text-gray-400">
+                            <p className="text-xs sm:text-base text-gray-500 dark:text-gray-400">
                                 {product.description}
                             </p>
-                            <div className="flex items-center gap-10 pt-8">
+                            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-10 pt-4 sm:pt-8">
                                 {product.stock > 0 &&
-                                    <div className="text-4xl font-bold">
+                                    <div className="text-xl sm:text-2xl font-bold">
                                         {product.price === "FİYAT SORUNUZ" ? "FİYAT SORUNUZ" : product.price + ' ₺'}
                                     </div>
                                 }
                                 <Button className="w-[200px] h-[60px] bg-[#E3020F] text-white">
-                                    <span className="text-xl py-4">
+                                    <span className="text-base sm:text-xl py-4">
                                         Bizi Arayın <br /> +90 530 360 41 05
                                     </span>
                                 </Button>
