@@ -10,6 +10,7 @@ import Admin from "./pages/admin";
 import Part from "./pages/part";
 import Product from "./pages/product";
 import AllProductsPage from "./pages/all-products-page";
+import WhatsappIcon from './assets/WhatsApp-icon.png'
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,9 @@ function App() {
       <Toaster />
       <Analytics />
       <RouterProvider router={router} />
+      <a href="https://wa.me/+905303604105" className="fixed bottom-4 right-4 cursor-pointer flex flex-col items-center">
+        <img src={WhatsappIcon} className="w-10 h-10 sm:w-20 sm:h-20 rounded hover:bg-green-300  transition-all" />
+      </a>
     </>
   )
 }
