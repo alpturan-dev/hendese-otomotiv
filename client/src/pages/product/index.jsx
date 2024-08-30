@@ -6,6 +6,8 @@ import ProductSection from './components/product-section';
 import Hr from '@/components/hr';
 import Footer from '@/components/footer';
 import { ProductPageSkeleton } from '@/components/skeleton';
+import { Helmet } from 'react-helmet';
+import DynamicOGTags from '@/lib/dynamic-og-tags';
 
 const Product = () => {
     const params = useParams();
@@ -32,6 +34,14 @@ const Product = () => {
 
     return (
         <div>
+            <Helmet>
+                <DynamicOGTags
+                    title={`${product.name} | Hendese Otomotiv`}
+                    description={product.description}
+                    image={product.imageUrl}
+                    url={`https://www.hendeseoto.com/product/${product.id}`}
+                />
+            </Helmet>
             <Navbar />
             <hr className='h-1' />
             {loading

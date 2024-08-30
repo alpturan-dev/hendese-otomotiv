@@ -12,6 +12,8 @@ import Part from "./pages/part";
 import Product from "./pages/product";
 import AllProductsPage from "./pages/all-products-page";
 import WhatsappIcon from './assets/WhatsApp-icon.png'
+import DynamicOGTags from "./lib/dynamic-og-tags";
+import { Helmet } from 'react-helmet';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
+      <Helmet>
+        <DynamicOGTags
+          title="Hendese Otomotiv | Sakarya Arifiye Suzuki Çıkma Yedek Parça"
+          description="Sakarya Arifiye Suzuki Çıkma Yedek Parça"
+          image="https://i.ibb.co/hRvXYN3/logo.jpg"
+          url="https://www.hendeseoto.com"
+        />
+      </Helmet>
       <Toaster />
       <Analytics />
       <SpeedInsights />
