@@ -38,14 +38,14 @@ const Dashboard = () => {
         <div>
             <Navbar />
             <CustomCarousel />
-            <AllProducts loading={loading} />
-            {/* <CategoriesSection /> */}
-            <Hr />
             <CategoryCarousel type="Yeni Ürünler" />
             <Hr />
             <CategoryCarousel type="İndirimli Ürünler" />
             <Hr />
             <CategoryCarousel type="Çok Satanlar" />
+            <Hr />
+            <AllProducts loading={loading} />
+            {/* <CategoriesSection /> */}
             <Hr />
             <Footer />
         </div>
