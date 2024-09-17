@@ -7,7 +7,6 @@ import Hr from '@/components/hr';
 import Footer from '@/components/footer';
 import { ProductPageSkeleton } from '@/components/skeleton';
 import { Helmet } from 'react-helmet';
-import DynamicOGTags from '@/lib/dynamic-og-tags';
 
 const Product = () => {
     const params = useParams();
@@ -19,7 +18,6 @@ const Product = () => {
         await axios
             .get(import.meta.env.VITE_API_URL + '/api/products/' + params.id)
             .then((response) => {
-                console.log("response", response.data)
                 setProduct(response.data);
             })
             .catch((error) => {
@@ -32,16 +30,28 @@ const Product = () => {
         getProduct();
     }, [params.id])
 
+    useEffect(() => {
+        if (product._id) {
+            document.title = `${product.name} | Hendese Otomotiv`;
+            document.querySelector('meta[property="og:title"]').setAttribute('content', `${product.name} | Hendese Otomotiv`);
+            document.querySelector('meta[property="og:description"]').setAttribute('content', product.description);
+            document.querySelector('meta[property="og:image"]').setAttribute('content', product.images[0]);
+            document.querySelector('meta[property="og:url"]').setAttribute('content', `https://www.hendeseoto.com/parca/${product.part}/${product._id}`);
+        }
+    }, [product]);
+
     return (
         <div>
-            <Helmet>
-                <DynamicOGTags
-                    title={`${product.name} | Hendese Otomotiv`}
-                    description={product.description}
-                    image={product.imageUrl}
-                    url={`https://www.hendeseoto.com/product/${product.id}`}
-                />
-            </Helmet>
+            {!loading && product._id && (
+                <Helmet>
+                    <title>{`${product.name} | Hendese Otomotiv`}</title>
+                    <meta property="og:title" content={`${product.name} | Hendese Otomotiv`} />
+                    <meta property="og:description" content={product.description} />
+                    <meta property="og:image" content={product.imageUrl} />
+                    <meta property="og:url" content={`https://www.hendeseoto.com/parca/` + product.part + '/' + product._id} />
+                    <meta property="og:type" content="website" />
+                </Helmet>
+            )}
             <Navbar />
             <hr className='h-1' />
             {loading
