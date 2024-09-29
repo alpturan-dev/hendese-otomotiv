@@ -16,6 +16,7 @@ import { storage } from "@/config/firebaseConfig";
 import { ref, deleteObject } from "firebase/storage";
 import { DeleteDialog } from "@/components/delete-dialog";
 import Loading from "@/components/loading";
+import { LogOut, Plus } from "lucide-react";
 
 const Admin = () => {
   const { toast } = useToast();
@@ -28,7 +29,7 @@ const Admin = () => {
     axios
       .get(import.meta.env.VITE_API_URL + "/api/products")
       .then((response) => {
-        setProducts(response.data.data);
+        setProducts(response.data.data.reverse());
       })
       .catch((error) => {
         console.log(error);
@@ -87,28 +88,28 @@ const Admin = () => {
   return (
     <Loading loading={loading}>
       <div className="flex min-h-screen flex-col">
-        <header className="flex h-14 items-center border-b border-gray-200 bg-gray-100/40 px-4 dark:border-gray-800 dark:bg-gray-800/40 lg:h-16">
-          <h1 className="text-lg font-semibold">
+        <header className="flex flex-row h-24 gap-1 items-center justify-between border-b border-gray-200 bg-gray-100/40 px-4 dark:border-gray-800 dark:bg-gray-800/40 lg:h-16">
+          <h1 className="text-base font-semibold py-2">
             Hendese Otomotiv Admin Paneli
           </h1>
-          <span className="ml-auto text-sm">{username}</span>
-          <Button variant="destructive" onClick={handleLogout} className="ml-8">
-            Çıkış yap
-          </Button>
+          <div className="flex items-center justify-end gap-2 md:justify-self-end">
+            <span className="hidden md:block ml-auto text-sm">{username}</span>
+            <Button variant="destructive" onClick={handleLogout} className="ml-4 md:ml-8 flex items-center gap-2">
+              <span className="hidden md:block">
+                Çıkış yap
+              </span>
+              <LogOut />
+            </Button>
+          </div>
         </header>
         <div className="flex w-full flex-row items-center justify-between">
-          {/* <form className="ml-4 mt-4 flex items-center gap-4 lg:gap-8">
-                    <Input
-                        className="w-full max-w-xs appearance-none font-normal md:max-w-sm lg:max-w-md"
-                        placeholder="Ara..."
-                        type="search"
-                    />
-                    <Button type="submit">Ara</Button>
-                </form> */}
           <div></div>
           <div className="mr-4 mt-4">
             <ProductModal
-              element={<>Parça ekle</>}
+              element={<div className="flex items-center gap-2">
+                <Plus />
+                Parça ekle
+              </div>}
               products={products}
               setProducts={setProducts}
             />
@@ -185,7 +186,7 @@ const Admin = () => {
                         <TableCell className="hidden md:table-cell">
                           {product.isActive ? "Evet" : "Hayır"}
                         </TableCell>
-                        <TableCell className="">
+                        <TableCell className="flex flex-col gap-2 items-center justify-center">
                           <ProductModal
                             element={
                               <>

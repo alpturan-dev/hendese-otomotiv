@@ -194,7 +194,7 @@ export default function ProductModal({ element, product, products, setProducts, 
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
                     {type === "edit" ? (
-                        <Button size="icon" className="w-4 h-4 md:w-auto" variant="ghost"
+                        <Button size="icon" className="w-8 h-8 md:w-auto md:h-auto" variant="ghost"
                             onClick={() => setOpen(true)}
                         >
                             {element}
@@ -206,74 +206,46 @@ export default function ProductModal({ element, product, products, setProducts, 
                         </Button>
                     )}
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[700px] px-10 py-2">
+                <DialogContent className="w-[95vw] max-w-[700px] h-[90vh] md:h-auto px-2 md:px-6 py-2 overflow-y-auto">
                     <DialogHeader className="py-4">
                         <DialogTitle>Parça {type === "edit" ? "düzenle" : "ekle"}</DialogTitle>
                         <DialogDescription>Parçanın bilgilerini aşağıya gir</DialogDescription>
                     </DialogHeader>
-                    <form onSubmit={(e) => type === "new" ? addProduct(e) : editProduct(e)}>
-                        <div className="grid gap-4">
-                            <div className="flex flex-col gap-6 ">
-                                <div className="flex gap-6 justify-center">
-                                    {imageUrls?.map((img) => {
-                                        const inDeleteUrlArray = deleteImgUrls.find((deleteImg) => deleteImg === img);
-                                        let tempDeleteArray = [...deleteImgUrls];
-                                        return (
-                                            <div key={img} className='border border-gray-400 hover:border-red-900' onClick={() => {
-                                                if (inDeleteUrlArray) {
-                                                    tempDeleteArray = tempDeleteArray.filter((el) => el !== img);
-                                                } else {
-                                                    tempDeleteArray.push(img)
-                                                }
-                                                setDeleteImgUrls(tempDeleteArray)
-                                            }} >
-                                                {inDeleteUrlArray && (
-                                                    <div className="absolute">
-                                                        <DeleteIcon />
-                                                    </div>
-                                                )}
-                                                <img src={img} className="w-20 h-20" />
+                    <form onSubmit={(e) => type === "new" ? addProduct(e) : editProduct(e)} className="space-y-4">
+                        <div className="grid grid-cols-1 gap-4">
+                            <div className="flex flex-wrap justify-center gap-2">
+                                {imageUrls?.map((img) => (
+                                    <div key={img} className='relative border border-gray-400 hover:border-red-900 w-20 h-20' onClick={() => {
+                                        setDeleteImgUrls(prev =>
+                                            prev.includes(img) ? prev.filter(url => url !== img) : [...prev, img]
+                                        );
+                                    }}>
+                                        {deleteImgUrls.includes(img) && (
+                                            <div className="absolute inset-0 bg-red-500 bg-opacity-50 flex items-center justify-center">
+                                                <DeleteIcon />
                                             </div>
-                                        )
-                                    })}
-                                </div>
-                                <div className="flex items-center gap-4 ">
-                                    <Label className="w-[200px]" htmlFor="images">
-                                        Resimler
-                                    </Label>
-                                    <Input accept="image/*" className="max-w-[700px] w-full" id="images" multiple type="file" onChange={handleImages} />
-                                </div>
+                                        )}
+                                        <img src={img} className="w-full h-full object-cover" alt="Product" />
+                                    </div>
+                                ))}
                             </div>
-                            <div className="flex items-center gap-4">
-                                <Label className="w-[200px]" htmlFor="name">
-                                    Parça İsmi
-                                </Label>
-                                <Input id="name" placeholder="Parça ismi gir..." value={newProduct.name} onChange={(e) => setNewProduct({
-                                    ...newProduct,
-                                    name: e.target.value
-                                })} />
+                            <div className="flex flex-col gap-2">
+                                <Label htmlFor="images">Resimler</Label>
+                                <Input accept="image/*" id="images" multiple type="file" onChange={handleImages} />
                             </div>
-                            <div className="flex items-center gap-4">
-                                <Label className="w-[200px]" htmlFor="description">
-                                    Açıklama
-                                </Label>
-                                <Textarea className="max-w-[700px] w-full resize-none" id="description" placeholder="Parça açıklaması gir..." value={newProduct.description} onChange={(e) => setNewProduct({
-                                    ...newProduct,
-                                    description: e.target.value
-                                })} />
+                            <div className="flex flex-col gap-2">
+                                <Label htmlFor="name">Parça İsmi</Label>
+                                <Input id="name" placeholder="Parça ismi gir..." value={newProduct.name} onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })} />
+                            </div>
+                            <div className="flex flex-col gap-2">
+                                <Label htmlFor="description">Açıklama</Label>
+                                <Textarea className="resize-none" id="description" placeholder="Parça açıklaması gir..." value={newProduct.description} onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })} />
                             </div>
                             <div className="grid gap-4 md:grid-cols-2">
-                                <div className="flex items-start gap-4">
-                                    <Label className="w-[200px] pt-3" htmlFor="part">
-                                        Parça
-                                    </Label>
-                                    <Select className="max-w-[200px] w-full" id="part" multiple placeholder="Parça seç..."
-                                        value={newProduct.part}
-                                        onValueChange={(e) => setNewProduct({
-                                            ...newProduct,
-                                            part: e
-                                        })}>
-                                        <SelectTrigger className="w-[310px]">
+                                <div className="flex flex-col gap-2">
+                                    <Label htmlFor="part">Parça</Label>
+                                    <Select id="part" value={newProduct.part} onValueChange={(e) => setNewProduct({ ...newProduct, part: e })}>
+                                        <SelectTrigger>
                                             <SelectValue placeholder="Parça seç..." />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -285,124 +257,85 @@ export default function ProductModal({ element, product, products, setProducts, 
                                         </SelectContent>
                                     </Select>
                                 </div>
-                                <div className="flex items-start gap-4">
-                                    <Label className="w-[200px] pt-3" htmlFor="oem">
-                                        OEM
-                                    </Label>
-                                    <Input id="oem" placeholder="OEM gir..." value={newProduct.oem} onChange={(e) => setNewProduct({
-                                        ...newProduct,
-                                        oem: e.target.value
-                                    })} />
+                                <div className="flex flex-col gap-2">
+                                    <Label htmlFor="oem">OEM</Label>
+                                    <Input id="oem" placeholder="OEM gir..." value={newProduct.oem} onChange={(e) => setNewProduct({ ...newProduct, oem: e.target.value })} />
                                 </div>
-                                <div className="flex items-start gap-4">
-                                    <Label className="w-[200px] pt-3" htmlFor="quantity">
-                                        Stok Miktarı
-                                    </Label>
-                                    <Input id="quantity" type="number" value={newProduct.stock} onChange={(e) => setNewProduct({
-                                        ...newProduct,
-                                        stock: e.target.value
-                                    })} />
+                                <div className="flex flex-col gap-2">
+                                    <Label htmlFor="quantity">Stok Miktarı</Label>
+                                    <Input id="quantity" type="number" value={newProduct.stock} onChange={(e) => setNewProduct({ ...newProduct, stock: e.target.value })} />
                                 </div>
-                                <div className="flex items-start gap-4">
-                                    <Label className="w-[200px] pt-3" htmlFor="price">
-                                        Ücret
-                                    </Label>
-                                    <Input disabled={newProduct.price === "FİYAT SORUNUZ"} id="price" placeholder="Ücret gir..." value={newProduct.price} onChange={(e) => setNewProduct({
-                                        ...newProduct,
-                                        price: e.target.value
-                                    })} />
-                                    <Checkbox className="self-center" name="priceCheckbox"
-                                        onCheckedChange={(checked) => {
-                                            if (checked) {
+                                <div className="flex flex-col gap-2">
+                                    <Label htmlFor="price">Ücret</Label>
+                                    <div className="flex items-center gap-2">
+                                        <Input disabled={newProduct.price === "FİYAT SORUNUZ"} id="price" placeholder="Ücret gir..." value={newProduct.price} onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })} />
+                                        <Checkbox
+                                            checked={newProduct.price === "FİYAT SORUNUZ"}
+                                            onCheckedChange={(checked) => {
                                                 setNewProduct({
                                                     ...newProduct,
-                                                    price: "FİYAT SORUNUZ"
-                                                })
-                                            } else {
-                                                setNewProduct({
-                                                    ...newProduct,
-                                                    price: 0
-                                                })
-                                            }
-                                        }} />
-                                </div>
-                                <div className="flex items-start gap-4">
-                                    <Label className="w-[110px] pt-3" htmlFor="models">
-                                        Modeller
-                                    </Label>
-                                    <div className="flex flex-col gap-2 pt-2">
-                                        {models.map((model, index) => {
-                                            const isChecked = newProduct.models.find((item) => item === model);
-                                            return (
-                                                <div key={index} className="flex gap-3">
-                                                    <Checkbox id={model} name="models"
-                                                        checked={isChecked ? true : false}
-                                                        onCheckedChange={() => {
-                                                            if (newProduct.models.find((item) => item === model)) {
-                                                                let newProductModels = newProduct.models.filter((item) => item !== model)
-                                                                setNewProduct({
-                                                                    ...newProduct,
-                                                                    models: newProductModels
-                                                                })
-                                                            } else {
-                                                                setNewProduct({
-                                                                    ...newProduct,
-                                                                    models: [...newProduct.models, model]
-                                                                })
-                                                            }
-                                                        }} />
-                                                    <Label htmlFor={model}>{model}</Label>
-                                                </div>
-                                            )
-                                        })}
+                                                    price: checked ? "FİYAT SORUNUZ" : ""
+                                                });
+                                            }}
+                                        />
                                     </div>
                                 </div>
-                                <div className="flex items-start gap-4">
-                                    <Label className="w-[110px] pt-3" htmlFor="categories">
-                                        Kategoriler
-                                    </Label>
-                                    <div className="flex flex-col gap-2 pt-2">
-                                        {categories.map((category, index) => {
-                                            const isChecked = newProduct.categories.find((cat) => cat === category);
-                                            return (
-                                                <div key={index} className="flex gap-3">
-                                                    <Checkbox id={category} name="categories"
-                                                        checked={isChecked ? true : false}
-                                                        onCheckedChange={() => {
-                                                            if (newProduct.categories.find((cat) => cat === category)) {
-                                                                let newProductCategories = newProduct.categories.filter((cat) => cat !== category)
-                                                                setNewProduct({
-                                                                    ...newProduct,
-                                                                    categories: newProductCategories
-                                                                })
-                                                            } else {
-                                                                setNewProduct({
-                                                                    ...newProduct,
-                                                                    categories: [...newProduct.categories, category]
-                                                                })
-                                                            }
-                                                        }} />
-                                                    <Label htmlFor={category}>{category}</Label>
-                                                </div>
-                                            )
-                                        })}
+                                <div className="flex flex-col gap-2">
+                                    <Label>Modeller</Label>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        {models.map((model, index) => (
+                                            <div key={index} className="flex items-center gap-2">
+                                                <Checkbox
+                                                    id={`model-${index}`}
+                                                    checked={newProduct.models.includes(model)}
+                                                    onCheckedChange={(checked) => {
+                                                        setNewProduct({
+                                                            ...newProduct,
+                                                            models: checked
+                                                                ? [...newProduct.models, model]
+                                                                : newProduct.models.filter(m => m !== model)
+                                                        });
+                                                    }}
+                                                />
+                                                <Label htmlFor={`model-${index}`}>{model}</Label>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
-                                <div className="flex items-start pt-4 gap-4">
-                                    <Label className="w-[110px]" htmlFor="isActive">
-                                        Satışta mı?
-                                    </Label>
-                                    <Checkbox id="isActive" name="isActive"
+                                <div className="flex flex-col gap-2">
+                                    <Label>Kategoriler</Label>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        {categories.map((category, index) => (
+                                            <div key={index} className="flex items-center gap-2">
+                                                <Checkbox
+                                                    id={`category-${index}`}
+                                                    checked={newProduct.categories.includes(category)}
+                                                    onCheckedChange={(checked) => {
+                                                        setNewProduct({
+                                                            ...newProduct,
+                                                            categories: checked
+                                                                ? [...newProduct.categories, category]
+                                                                : newProduct.categories.filter(c => c !== category)
+                                                        });
+                                                    }}
+                                                />
+                                                <Label htmlFor={`category-${index}`}>{category}</Label>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <Label htmlFor="isActive">Satışta mı?</Label>
+                                    <Checkbox
+                                        id="isActive"
                                         checked={newProduct.isActive}
-                                        onCheckedChange={() => setNewProduct({
-                                            ...newProduct,
-                                            isActive: !newProduct.isActive
-                                        })} />
+                                        onCheckedChange={(checked) => setNewProduct({ ...newProduct, isActive: checked })}
+                                    />
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full mt-6 flex justify-end">
-                            <Button type="submit">{type === "new" ? <>Ekle</> : <>Düzenle</>}</Button>
+                        <div className="pt-4">
+                            <Button type="submit" className="w-full">{type === "new" ? "Ekle" : "Düzenle"}</Button>
                         </div>
                     </form>
                 </DialogContent>

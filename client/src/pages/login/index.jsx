@@ -57,13 +57,13 @@ const Login = () => {
     return (
         <>
             {loading ? <Loading /> : (
-                <form onSubmit={handleLogin} autoComplete="off" className='h-screen m-auto w-1/3 flex items-start justify-center gap-4 flex-col'>
+                <form onSubmit={handleLogin} autoComplete="off" className='h-screen m-auto w-4/5 md:w-1/3 flex items-center md:items-start justify-center gap-4 flex-col'>
                     <Card>
                         <CardHeader>
                             <CardTitle className="text-2xl">Admin Panel Giriş</CardTitle>
                             <CardDescription>Giriş yapmak için kullanıcı adınızı ve şifrenizi girin.</CardDescription>
                         </CardHeader>
-                        <CardContent className="space-y-4">
+                        <CardContent className="space-y-4 px-4">
                             <div className="space-y-2">
                                 <Label htmlFor="username">Kullanıcı adı</Label>
                                 <Input id="username" placeholder="Kullanıcı adı" required onChange={(e) => setCredentials({ ...credentials, username: e.target.value })} />
@@ -74,7 +74,7 @@ const Login = () => {
                             </div>
                         </CardContent>
                         <CardFooter className="flex">
-                            <Button className="ml-auto" type='submit'>Giriş</Button>
+                            <Button className="ml-auto mt-4" type='submit'>Giriş</Button>
                         </CardFooter>
                     </Card>
                 </form>
