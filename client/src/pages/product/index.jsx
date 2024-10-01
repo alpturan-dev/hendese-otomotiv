@@ -6,7 +6,7 @@ import ProductSection from './components/product-section';
 import Hr from '@/components/hr';
 import Footer from '@/components/footer';
 import { ProductPageSkeleton } from '@/components/skeleton';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 const Product = () => {
     const params = useParams();
@@ -30,16 +30,6 @@ const Product = () => {
         getProduct();
     }, [params.id])
 
-    useEffect(() => {
-        if (product._id) {
-            document.title = `${product.name} | Hendese Otomotiv`;
-            document.querySelector('meta[property="og:title"]').setAttribute('content', `${product.name} | Hendese Otomotiv`);
-            document.querySelector('meta[property="og:description"]').setAttribute('content', product.description);
-            document.querySelector('meta[property="og:image"]').setAttribute('content', product.images[0]);
-            document.querySelector('meta[property="og:url"]').setAttribute('content', `https://www.hendeseoto.com/parca/${product.part}/${product._id}`);
-        }
-    }, [product]);
-
     return (
         <div>
             {!loading && product._id && (
@@ -47,7 +37,7 @@ const Product = () => {
                     <title>{`${product.name} | Hendese Otomotiv`}</title>
                     <meta property="og:title" content={`${product.name} | Hendese Otomotiv`} />
                     <meta property="og:description" content={product.description} />
-                    <meta property="og:image" content={product.imageUrl} />
+                    <meta property="og:image" content={product.images[0]} />
                     <meta property="og:url" content={`https://www.hendeseoto.com/parca/` + product.part + '/' + product._id} />
                     <meta property="og:type" content="website" />
                 </Helmet>
