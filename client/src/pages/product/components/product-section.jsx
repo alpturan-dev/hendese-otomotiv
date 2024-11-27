@@ -77,11 +77,11 @@ export default function ProductSection({ product }) {
                                 </div>
                             </div>
                         </div>
-                        <div className="grid gap-4">
+                        <div className="w-full grid gap-4">
                             <p className="text-xs sm:text-base text-gray-500 dark:text-gray-400">
                                 {product.description}
                             </p>
-                            <div className="flex flex-col items-start gap-4 sm:gap-10 pt-2">
+                            <div className="flex flex-col items-center sm:items-start gap-4 sm:gap-5 pt-2">
                                 {product.stock > 0 &&
                                     <div className="text-xl sm:text-2xl font-bold">
                                         {product.price === "FİYAT SORUNUZ" ? "FİYAT SORUNUZ" : product.price + ' ₺'}

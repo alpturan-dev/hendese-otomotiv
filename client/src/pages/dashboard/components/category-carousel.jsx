@@ -33,7 +33,7 @@ const CategoryCarousel = ({ type }) => {
 
     return (
         categoryProducts.length <= 0 ? null : (
-            <div className="w-full text-center py-6 px-2" >
+            <div className="w-full text-center py-2 px-2" >
                 <h3 className='text-2xl font-bold tracking-tighter sm:text-2xl pt-2 pb-6 text-[#406800]'>
                     {type}
                 </h3>
@@ -61,7 +61,7 @@ const CategoryCarousel = ({ type }) => {
                                                 src={product?.images[0]}
                                             />
                                             <div className='flex flex-col justify-around items-center h-[100px]'>
-                                                <div className='xs:text-xs text-sm h-full flex items-center justify-center text-center font-medium px-2'>{product?.name}</div>
+                                                <div className='text-xs sm:text-sm h-full flex items-center justify-center text-center font-medium px-2'>{product?.name}</div>
                                                 <span className='h-[40px] text-xs w-full font-bold bg-[#406800] text-white flex justify-center items-center'>
                                                     {product.price === "FİYAT SORUNUZ" ? "FİYAT SORUNUZ"
                                                         : product.price + ' ₺'}
