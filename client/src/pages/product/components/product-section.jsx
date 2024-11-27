@@ -56,14 +56,14 @@ export default function ProductSection({ product }) {
                             ))}
                         </div>
                     </div>
-                    <div className="flex flex-col gap-10 items-start">
+                    <div className="flex flex-col gap-4 items-start">
                         <div className="grid gap-4">
                             <h1 className="font-bold text-xl lg:text-2xl sm:pb-4">{product.name}</h1>
                             <div className="grid gap-2 text-xs">
                                 <div className="flex items-center gap-2">
                                     <TruckIcon className={twJoin("w-5 h-5",
-                                        product.stock === 0 ? "text-red-500" : "text-green-500")} />
-                                    <span className={twJoin("font-medium", product.stock === 0 ? "text-red-500" : "text-green-500")}>
+                                        product.stock === 0 ? "text-red-500" : "text-[#406800]")} />
+                                    <span className={twJoin("font-medium", product.stock === 0 ? "text-red-500" : "text-[#406800]")}>
                                         {product.stock === 0 ? "Stokta yok!" : "Stokta var - 1-2 iş günü içerisinde kargoya verilir"}
                                     </span>
                                 </div>
@@ -81,13 +81,13 @@ export default function ProductSection({ product }) {
                             <p className="text-xs sm:text-base text-gray-500 dark:text-gray-400">
                                 {product.description}
                             </p>
-                            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-10 pt-4 sm:pt-8">
+                            <div className="flex flex-col items-start gap-4 sm:gap-10 pt-2">
                                 {product.stock > 0 &&
                                     <div className="text-xl sm:text-2xl font-bold">
                                         {product.price === "FİYAT SORUNUZ" ? "FİYAT SORUNUZ" : product.price + ' ₺'}
                                     </div>
                                 }
-                                <Button className="w-[200px] h-[60px] bg-[#E3020F] text-white">
+                                <Button className="w-[200px] h-[60px] bg-[#406800] text-white">
                                     <a href="tel:+90-530-360-4105" className="text-base sm:text-xl py-4">
                                         Bizi Arayın <br /> +90 530 360 41 05
                                     </a>

@@ -31,8 +31,6 @@ const SearchBar = () => {
         }
     };
 
-    useEffect(() => { console.log("filteredProducts", filteredProducts) }, [filteredProducts]);
-
     return (
         <div className='w-[350px] lg:w-[440px] mx-auto px-auto'>
             <div className='relative h-10 flex items-center gap-2 mb-2 md:mb-0'>

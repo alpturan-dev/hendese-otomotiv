@@ -12,12 +12,12 @@ const AllProducts = ({ loading, page = false }) => {
         <div className='w-full'>
             <div className="py-6 px-4 sm:mx-auto sm:px-auto w-full lg:w-3/4 max-w-[1000px]" >
                 <div className='flex justify-between'>
-                    <h2 className="text-xl font-bold tracking-tighter sm:text-2xl md:text-3xl text-[#E3020F]">Tüm Parçalar</h2>
+                    <h2 className="text-xl font-bold tracking-tighter sm:text-2xl text-[#406800]">Tüm Parçalar</h2>
                     {!page && (
                         <div className='text-xs sm:text-base flex flex-col justify-end items-end sm:flex-row sm:pt-2'>
                             <span className='pt-1'>Toplam {products.length} ürün</span>
                             <span className='hidden sm:flex'>{`\xa0`}</span>
-                            <a onClick={() => navigate('/tum-parcalar')} className='text-[#E3020F] underline cursor-pointer'>
+                            <a onClick={() => navigate('/tum-parcalar')} className='text-[#406800] underline cursor-pointer'>
                                 devamı...
                             </a>
                         </div>
@@ -27,15 +27,15 @@ const AllProducts = ({ loading, page = false }) => {
                 {loading ?
                     (
                         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
-                            {[1, 2, 3, 4, 5, 6, 7, 8].map(() => (
+                            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(() => (
                                 <SkeletonCard />
                             ))}
                         </div>
                     ) : (
-                        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+                        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
                             {products.length > 0 && products?.map((product, i) => {
                                 if (!page) {
-                                    if (i < 8) {
+                                    if (i < 10) {
                                         return (
                                             <ProductCard product={product} />
                                         )
@@ -50,7 +50,7 @@ const AllProducts = ({ loading, page = false }) => {
                     )}
                 {!page && (
                     <div className='mt-6 flex justify-center'>
-                        <Button variant="destructive" className='w-2/3 sm:w-2/5 md:w-1/3 text-center' onClick={() => navigate('/tum-parcalar')}>
+                        <Button className='w-1/3 sm:w-1/5 md:w-1/4 text-center bg-[#406800]' onClick={() => navigate('/tum-parcalar')}>
                             Daha fazla parça göster
                         </Button>
                     </div>

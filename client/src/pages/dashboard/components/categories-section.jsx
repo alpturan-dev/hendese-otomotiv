@@ -10,7 +10,7 @@ const CategoriesSection = () => {
         <div className="py-6 space-y-6 lg:py-12 bg-[#F7F7F7]">
             <div className="container grid items-center justify-center gap-4 px-4 text-center md:gap-8 lg:px-6 xl:gap-10">
                 <div className="space-y-3">
-                    <h2 className="text-xl font-bold tracking-tighter sm:text-2xl md:text-3xl text-[#E3020F]">Yedek Parçalar</h2>
+                    <h2 className="text-xl font-bold tracking-tighter sm:text-2xl md:text-3xl text-[#406800]">Yedek Parçalar</h2>
                     <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-base/relaxed dark:text-gray-400">
                         Farklı kategorilerimize göz atarak ihtiyacınız olan parçaları bulun.
                     </p>

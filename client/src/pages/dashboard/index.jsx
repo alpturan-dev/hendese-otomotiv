@@ -7,6 +7,7 @@ import AllProducts from './components/all-products'
 import { useProductStore } from '@/store/store'
 import Hr from '@/components/hr'
 import Footer from '@/components/footer'
+import { SelectSeparator } from '@/components/ui/select'
 
 const Dashboard = () => {
     const { setProducts } = useProductStore();
@@ -34,16 +35,17 @@ const Dashboard = () => {
     return (
         <div>
             <Navbar />
-            <CustomCarousel />
+            <SelectSeparator />
+            {/* <CustomCarousel /> */}
             <CategoryCarousel type="Yeni Ürünler" />
-            <Hr />
+            <SelectSeparator />
             <CategoryCarousel type="İndirimli Ürünler" />
-            <Hr />
+            <SelectSeparator />
             <CategoryCarousel type="Çok Satanlar" />
-            <Hr />
+            <SelectSeparator />
             <AllProducts loading={loading} />
             {/* <CategoriesSection /> */}
-            <Hr />
+            <SelectSeparator />
             <Footer />
         </div>
     )
