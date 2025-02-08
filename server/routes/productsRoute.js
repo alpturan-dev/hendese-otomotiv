@@ -50,6 +50,28 @@ router.get('/', async (request, response) => {
     }
 });
 
+router.get("/search", async (req, res) => {
+    const { query } = req.query;
+    if (!query) return res.status(400).json({ error: "Query parameter is required" });
+
+    try {
+        let results = await Product.find({
+            $or: [
+                { name: { $regex: query, $options: "i" } },
+                { description: { $regex: query, $options: "i" } },
+                { oem: { $regex: query, $options: "i" } },
+                { part: { $regex: query, $options: "i" } },
+                { models: { $regex: query, $options: "i" } },
+                { categories: { $regex: query, $options: "i" } }
+            ]
+        });
+        results = results.filter((res, index) => (index < 6) && res)
+        res.status(200).json(results);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // Route for Get One Book from database by id
 router.get('/:id', async (request, response) => {
     try {
