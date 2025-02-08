@@ -1,21 +1,15 @@
 export const parts = [
-    "Motor",
-    "Silindir Kapak",
-    "Şanzıman",
-    "Şarj-Marş",
-    "Klima Kompresörü",
-    "Aks",
-    "Fren",
-    "Stop-Far",
+    "Motor Mekanik",
+    "Motor Elektronik",
+    "Şanzıman-Diferansiyel",
+    "Diferansiyel Kilitleri",
+    "Sensör Valf ve Elektronik",
+    "Aydınlatma",
     "Kaporta",
     "İç Trim",
+    "Periyodik Bakım",
     "Lastik-Jant",
-    "Süspansiyon",
-    "Ateşleme",
-    "Elektronik-Beyin",
-    "Radyatör",
-    "Direksiyon",
-    "Aksesuar"
+    "Aksesuar",
 ];
 
 export const models = [
